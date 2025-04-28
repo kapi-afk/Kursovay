@@ -1,0 +1,122 @@
+/* Main content styles */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.about-us,
+.unique-features,
+.history {
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+/* Section headers */
+.about-us h2,
+.unique-features h2,
+.history h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Content containers */
+.about-us .content-box,
+.unique-features .content-box,
+.history .content-box {
+    background-color: rgba(97, 52, 57, 0.3);
+    padding: 2rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+.about-us p,
+.history p {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.about-us p:last-child,
+.history p:last-child {
+    margin-bottom: 0;
+}
+
+.unique-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.unique-features li {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.unique-features li:last-child {
+    margin-bottom: 0;
+}
+
+.unique-features strong {
+    color: #fff;
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem;
+    }
+
+    .about-us h2,
+    .unique-features h2,
+    .history h2 {
+        font-size: 2rem;
+    }
+
+    .about-us .content-box,
+    .unique-features .content-box,
+    .history .content-box {
+        padding: 1.5rem;
+    }
+
+    .about-us p,
+    .history p,
+    .unique-features li {
+        font-size: 1.1rem;
+    }
+
+    .unique-features strong {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-us h2,
+    .unique-features h2,
+    .history h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-us .content-box,
+    .unique-features .content-box,
+    .history .content-box {
+        padding: 1rem;
+    }
+
+    .about-us p,
+    .unique-features li,
+    .history p {
+        font-size: 1rem;
+    }
+
+    .unique-features strong {
+        font-size: 1.1rem;
+    }
+} 

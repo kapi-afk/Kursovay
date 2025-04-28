@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <link rel="stylesheet" href="home_styles.css">
+    <link rel="stylesheet" href="about_styles.css">
+    <link rel="stylesheet" href="burger_menu_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="home.html"><img src="D:\Курсовая\images\Лого.svg" alt="Логотип театра"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="tickets.html">Театральные билеты</a></li>
+                <li><a href="performances.html">Выступления</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Burger Menu -->
+    <div class="burger-menu">
+        <div class="burger-menu-header">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Чем помочь?">
+            </div>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="burger-menu-nav">
+            <a href="about_us.html">О нас</a>
+            <a href="team.html">Команда</a>
+            <a href="performances.html">Выступления</a>
+            <a href="tickets.html">Театральные билеты</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="about-us">
+            <h2 class="fade-in-element">О нас</h2>
+            <div class="content-box fade-in-element">
+                <p>Добро пожаловать в театр Whispers of Drama – пространство, где оживают истории, шепотом проходят через души зрителей. Наш театр – это сочетание традиционного мастерства и новых экспериментов.</p>
+                <p>Мы смелы, искренни, непредсказуемы и умеем удивлять современностью. Мы стремимся создать атмосферу, в которой искусство театра становится частью нашей жизни, частью каждого зрителя. Мы рассказываем истории, которые находят отклик в каждом зрителе, и верим, что каждая постановка способна изменить восприятие мира.</p>
+            </div>
+        </section>
+
+        <section class="unique-features">
+            <h2 class="fade-in-element">Что нас делает уникальными</h2>
+            <div class="content-box fade-in-element">
+                <ul>
+                    <li>
+                        Мы постоянно ищем новые формы и способы выражения, соединяя традиционные театральные приёмы с современными технологиями и нестандартными режиссёрскими решениями.
+                    </li>
+                    <li>
+                        Наш спектакль часто проходит в закулисных пространствах, где каждый зритель становится частью действа, будто слышит шепоты города.
+                    </li>
+                    <li>
+                        Whispers of Drama – это театр для всех. Наши постановки охватывают широкий спектр тем – от классики до актуальных вопросов современности.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="history">
+            <h2 class="fade-in-element">История</h2>
+            <div class="content-box fade-in-element">
+                <p>Whispers of Drama родился в 2010 году как бунт против шаблонов — несколько актёров, пустующий чердак и жажда говорить со зрителем без пафоса. Название появилось из фразы: «Настоящие эмоции звучат как шёпот, но остаются в памяти навсегда».</p>
+                <p>Первые годы мы играли камерные спектакли при свечах, превратили заброшенную типографию в арт-пространство и экспериментировали: иммерсивные променады, спектакли в квартирах зрителей, документальные постановки. Пандемия стала испытанием — мы играли в Zoom, снимали «кинодневники» изоляции, но не сломались.</p>
+                <p>Сегодня Whispers of Drama — это лаборатория живых историй. Наша сцена может быть где угодно: в старом особняке, под открытым небом или в вашей голове (спасибо аудиоспектаклям). Мы по-прежнему верим: настоящее искусство не громкое — оно проникает тихо, но навсегда.</p>
+                <p>«Театр — это когда после финальных аплодисментов в зале ещё несколько секунд стоит тишина. Вот ради этих секунд мы и существуем».</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="#" id="inst"><img src="D:\Курсовая\images\icons8-instagram.svg" alt="Instagram"></a>
+                    <a href="#" ><img src="D:\Курсовая\images\icons8-facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="D:\Курсовая\images\icons8-youtube.svg" alt="Youtube"></a>
+                    <a href="#"id="X" ><img src="D:\Курсовая\images\icons8-твиттерх.svg" alt="Twitter"></a>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3>Контакты</h3>
+                <p>Адрес: Лондон, ул.Блумсбери, д.15</p>
+                <p>Email: kuisanna010@gmail.com</p>
+                <p>Тел: +375333067276</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script src="about_script.js"></script>
+</body>
+</html> 

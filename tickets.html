@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Покупка билетов | Театр</title>
+    <link rel="stylesheet" href="home_styles.css">
+    <link rel="stylesheet" href="burger_menu_styles.css">
+    <link rel="stylesheet" href="tickets_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="home.html"><img src="images/Лого.svg" alt="Логотип театра"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="tickets.html" class="active">Театральные билеты</a></li>
+                <li><a href="performances.html">Выступления</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Burger Menu -->
+    <div class="burger-menu">
+        <div class="burger-menu-header">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Чем помочь?">
+            </div>
+            <button class="close-menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="burger-menu-nav">
+            <a href="about_us.html">О нас</a>
+            <a href="team.html">Команда</a>
+            <a href="performances.html">Выступления</a>
+            <a href="tickets.html" class="active">Театральные билеты</a>
+        </nav>
+    </div>
+
+    <main class="tickets-page">
+        <section class="performance-select">
+            <h1>Выбор билетов</h1>
+            <div class="performance-info">
+                <img src="images/The_Fifth_Step_Initial_Agents_1200x600.jpg" alt="The Fifth Step">
+                <div class="info">
+                    <h2>The Fifth Step</h2>
+                    <div class="performance-details">
+                        <p class="duration"><i class="far fa-clock"></i> 2 часа 30 минут (с антрактом)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="date-select">
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <button class="month-nav prev">&lt;</button>
+                    <h2 class="current-month"></h2>
+                    <button class="month-nav next">&gt;</button>
+                </div>
+                <div class="dates-grid"></div>
+                <div class="time-select">
+                    <button class="time-select-btn">
+                        Время
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="time-options">
+                        <div class="time-option" data-time="14:00">
+                            <span>Дневной сеанс</span>
+                            <span class="time">14:00</span>
+                        </div>
+                        <div class="time-option" data-time="20:00">
+                            <span>Вечерний сеанс</span>
+                            <span class="time">20:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seat-select">
+            <div class="stage">Сцена</div>
+            <div class="seating-plan">
+                <div class="row" data-row="1">
+                    <button class="seat" data-row="1" data-seat="1" title="Ряд 1, Место 1"></button>
+                    <button class="seat" data-row="1" data-seat="2" title="Ряд 1, Место 2"></button>
+                    <button class="seat" data-row="1" data-seat="3" title="Ряд 1, Место 3"></button>
+                    <button class="seat" data-row="1" data-seat="4" title="Ряд 1, Место 4"></button>
+                    <button class="seat" data-row="1" data-seat="5" title="Ряд 1, Место 5"></button>
+                    <button class="seat" data-row="1" data-seat="6" title="Ряд 1, Место 6"></button>
+                </div>
+                <div class="row" data-row="2">
+                    <button class="seat" data-row="2" data-seat="1" title="Ряд 2, Место 1"></button>
+                    <button class="seat" data-row="2" data-seat="2" title="Ряд 2, Место 2"></button>
+                    <button class="seat" data-row="2" data-seat="3" title="Ряд 2, Место 3"></button>
+                    <button class="seat" data-row="2" data-seat="4" title="Ряд 2, Место 4"></button>
+                    <button class="seat" data-row="2" data-seat="5" title="Ряд 2, Место 5"></button>
+                    <button class="seat" data-row="2" data-seat="6" title="Ряд 2, Место 6"></button>
+                    <button class="seat" data-row="2" data-seat="7" title="Ряд 2, Место 7"></button>
+                    <button class="seat" data-row="2" data-seat="8" title="Ряд 2, Место 8"></button>
+                </div>
+                <div class="row" data-row="3">
+                    <button class="seat" data-row="3" data-seat="1" title="Ряд 3, Место 1"></button>
+                    <button class="seat" data-row="3" data-seat="2" title="Ряд 3, Место 2"></button>
+                    <button class="seat" data-row="3" data-seat="3" title="Ряд 3, Место 3"></button>
+                    <button class="seat" data-row="3" data-seat="4" title="Ряд 3, Место 4"></button>
+                    <button class="seat" data-row="3" data-seat="5" title="Ряд 3, Место 5"></button>
+                    <button class="seat" data-row="3" data-seat="6" title="Ряд 3, Место 6"></button>
+                    <button class="seat" data-row="3" data-seat="7" title="Ряд 3, Место 7"></button>
+                    <button class="seat" data-row="3" data-seat="8" title="Ряд 3, Место 8"></button>
+                    <button class="seat" data-row="3" data-seat="9" title="Ряд 3, Место 9"></button>
+                    <button class="seat" data-row="3" data-seat="10" title="Ряд 3, Место 10"></button>
+                </div>
+                <div class="row" data-row="4">
+                    <button class="seat" data-row="4" data-seat="1" title="Ряд 4, Место 1"></button>
+                    <button class="seat" data-row="4" data-seat="2" title="Ряд 4, Место 2"></button>
+                    <button class="seat" data-row="4" data-seat="3" title="Ряд 4, Место 3"></button>
+                    <button class="seat" data-row="4" data-seat="4" title="Ряд 4, Место 4"></button>
+                    <button class="seat" data-row="4" data-seat="5" title="Ряд 4, Место 5"></button>
+                    <button class="seat" data-row="4" data-seat="6" title="Ряд 4, Место 6"></button>
+                    <button class="seat" data-row="4" data-seat="7" title="Ряд 4, Место 7"></button>
+                    <button class="seat" data-row="4" data-seat="8" title="Ряд 4, Место 8"></button>
+                    <button class="seat" data-row="4" data-seat="9" title="Ряд 4, Место 9"></button>
+                    <button class="seat" data-row="4" data-seat="10" title="Ряд 4, Место 10"></button>
+                    <button class="seat" data-row="4" data-seat="11" title="Ряд 4, Место 11"></button>
+                    <button class="seat" data-row="4" data-seat="12" title="Ряд 4, Место 12"></button>
+                </div>
+                <div class="row" data-row="5">
+                    <button class="seat" data-row="5" data-seat="1" title="Ряд 5, Место 1"></button>
+                    <button class="seat" data-row="5" data-seat="2" title="Ряд 5, Место 2"></button>
+                    <button class="seat" data-row="5" data-seat="3" title="Ряд 5, Место 3"></button>
+                    <button class="seat" data-row="5" data-seat="4" title="Ряд 5, Место 4"></button>
+                    <button class="seat" data-row="5" data-seat="5" title="Ряд 5, Место 5"></button>
+                    <button class="seat" data-row="5" data-seat="6" title="Ряд 5, Место 6"></button>
+                    <button class="seat" data-row="5" data-seat="7" title="Ряд 5, Место 7"></button>
+                    <button class="seat" data-row="5" data-seat="8" title="Ряд 5, Место 8"></button>
+                    <button class="seat" data-row="5" data-seat="9" title="Ряд 5, Место 9"></button>
+                    <button class="seat" data-row="5" data-seat="10" title="Ряд 5, Место 10"></button>
+                    <button class="seat" data-row="5" data-seat="11" title="Ряд 5, Место 11"></button>
+                    <button class="seat" data-row="5" data-seat="12" title="Ряд 5, Место 12"></button>
+                    <button class="seat" data-row="5" data-seat="13" title="Ряд 5, Место 13"></button>
+                    <button class="seat" data-row="5" data-seat="14" title="Ряд 5, Место 14"></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-summary">
+            <div class="selected-info">
+                <div class="date-time">
+                    <h3>Дата и время</h3>
+                    <p class="selected-date">Не выбрано</p>
+                </div>
+                <div class="selected-seats">
+                    <h3>Выбранные места</h3>
+                    <p class="seats-list">Не выбрано</p>
+                </div>
+                <div class="total-price">
+                    <h3>Итого</h3>
+                    <p class="price">0 ₽</p>
+                </div>
+            </div>
+            <button class="book-button" disabled>Перейти к оформлению</button>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="#" id="inst"><img src="images/icons8-instagram.svg" alt="Instagram"></a>
+                    <a href="#"><img src="images/icons8-facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="images/icons8-youtube.svg" alt="Youtube"></a>
+                    <a href="#" id="X"><img src="images/icons8-твиттерх.svg" alt="Twitter"></a>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3>Контакты</h3>
+                <p>Адрес: Лондон, ул.Блумсбери, д.15</p>
+                <p>Email: kuisanna010@gmail.com</p>
+                <p>Тел: +375333067276</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="menu.js"></script>
+    <script src="tickets.js"></script>
+</body>
+</html> 
