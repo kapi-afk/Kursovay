@@ -6,16 +6,17 @@
     display: grid;
     grid-template-columns: 280px 900px;
     grid-template-rows: auto auto auto;
-    gap: 4rem 8rem;
+    gap: 1rem 6rem;
 }
 
 /* Performance info section */
 .performance-select {
     grid-column: 2;
     grid-row: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     width: 100%;
-    height: 150px;
+    height: auto;
+    position: relative;
 }
 
 .performance-info {
@@ -24,35 +25,41 @@
     padding-left: 3rem;
     border-radius: 8px;
     display: flex;
-    gap: 30px;
+    flex-direction: row;
     align-items: flex-start;
+    gap: 2rem;
     margin-bottom: 0.5rem;
+    max-width: 900px;
 }
 
 .performance-info img {
-    width: 350px;
-    height: 130px;
+    width: 300px;
+    height: 150px;
     border-radius: 5px;
     object-fit: cover;
+    margin-bottom: 0;
     flex-shrink: 0;
 }
 
 .info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: flex-start;
     flex-grow: 1;
+    padding-top: 0.5rem;
 }
 
 .info h2 {
     font-size: 1.8rem;
     margin-bottom: 0.8rem;
     color: var(--accent-color);
+    text-align: left;
 }
 
 .performance-details {
-    margin-top: auto;
-    padding-top: 1rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: left;
 }
 
 .cast {
@@ -65,10 +72,23 @@
     font-size: 0.95rem;
 }
 
+/* Overlay styles */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 98;
+}
+
 /* Date selection section */
 .date-select {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 1 / span 2;
     width: 100%;
     max-width: 280px;
     max-height: 330px;
@@ -83,11 +103,11 @@
     transition: max-height 0.3s ease;
 }
 
-.dates-grid:has(.date-cell:nth-child(42)) ~ .time-select {
-    margin-top: 1rem;
+.dates-grid:has(.date-cell:nth-child(43)) {
+    margin-bottom: 1rem;
 }
 
-.date-select:has(.dates-grid .date-cell:nth-child(42)) {
+.date-select:has(.dates-grid .date-cell:nth-child(43)) {
     max-height: 375px;
 }
 
@@ -95,6 +115,29 @@
     font-size: 1em;
     margin-bottom: 0.8rem;
     color: #4D2828;
+}
+
+.calendar-toggle {
+    display: none;
+    width: 100%;
+    padding: 12px;
+    background: #E8D7D7;
+    border: none;
+    border-radius: 10px;
+    color: #4D2828;
+    font-size: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-toggle:hover {
+    background-color: #d8c7c7;
+}
+
+.calendar-toggle i {
+    transition: transform 0.3s ease;
 }
 
 .calendar-section {
@@ -252,7 +295,7 @@
 /* Booking summary section */
 .booking-summary {
     grid-column: 1;
-    grid-row: 2 / span 2;
+    grid-row: 3;
     background: rgba(255, 255, 255, 0.05);
     padding: 1.2rem;
     border-radius: 10px;
@@ -260,25 +303,30 @@
     width: 280px;
     margin-right: 4rem;
     margin-left: 3rem;
-    margin-top: 0;
+    margin-top: -2rem;
 }
 
 .selected-info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.2rem;
     margin-bottom: 1.2rem;
+    width: 100%;
 }
 
 .selected-info h3 {
     margin-bottom: 0.5rem;
     color: var(--accent-color);
     font-size: 0.9rem;
+    width: 100%;
+    text-align: left;
 }
 
 .selected-info p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
 }
 
 .book-button {
@@ -302,72 +350,66 @@
     opacity: 0.9;
 }
 
-/* Seating section */
 .seat-select {
     grid-column: 2;
-    grid-row: 1 / span 3;
-    background: #E8D7D7; /* Цвет фона календаря */
+    grid-row: 2 / span 2;
+    background: #E8D7D7; 
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
-    height: calc(100vh - 250px);
-    margin-top: 15rem;
+    height: auto;
+    min-height: 500px;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
 }
 
 .stage {
-    background: #4D2828; /* Цвет текста календаря */
+    background: #4D2828;
     color: white;
     text-align: center;
-    padding: 0.5rem 2rem;
-    border-radius: 30px;
-    margin: 0 auto 2rem;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    margin: 0 auto 2.5rem;
     font-size: 1.1rem;
-    width: 200px;
+    width: 150px;
 }
 
 .seating-plan {
     position: relative;
     width: 100%;
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    flex-grow: 1;
-    justify-content: center;
+    gap: 10px;
+    padding: 0;
 }
 
 .row {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
 }
 
-.row:nth-child(1) { width: 50%; margin: 0 auto; }
-.row:nth-child(2) { width: 60%; margin: 0 auto; }
-.row:nth-child(3) { width: 70%; margin: 0 auto; }
-.row:nth-child(4) { width: 80%; margin: 0 auto; }
-.row:nth-child(5) { width: 90%; margin: 0 auto; }
-
 .seat {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border: 2px solid #4D2828;
     background: transparent;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     position: relative;
 }
 
 .seat.available {
-    background: #E8D7D7; /* Цвет фона календаря */
-    border-color: #4D2828; /* Цвет текста календаря */
+    background: #E8D7D7; 
+    border-color: #4D2828; 
 }
 
 .seat.occupied {
-    background: #4D2828; /* Цвет текста календаря */
+    background: #4D2828; 
     border-color: #4D2828;
     cursor: not-allowed;
 }
@@ -402,38 +444,186 @@
 @media (max-width: 992px) {
     .tickets-page {
         grid-template-columns: 1fr;
-        padding: 0.8rem;
-        padding-left: 3rem;
+        grid-template-rows: auto;
+        padding: 1rem;
+        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .date-select {
-        grid-column: 1;
-        grid-row: auto;
-        max-width: 400px;
+        order: 1;
+        width: 100%;
+        max-width: none;
         margin: 0;
+        padding: 0;
+        background: none;
+        position: relative;
+        z-index: 99;
     }
 
-    .performance-select,
+    .calendar-toggle {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+
+    .calendar-section {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 400px;
+        background: #E8D7D7;
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin: 0;
+        z-index: 99;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .date-select.active .calendar-section {
+        display: block;
+    }
+
+    .date-select.active .calendar-toggle i {
+        transform: rotate(180deg);
+    }
+
+    .date-select.active ~ .overlay {
+        display: block;
+    }
+
+    .performance-select {
+        order: 1;
+        margin-bottom: 1rem;
+    }
+
     .seat-select {
-        grid-column: 1;
-        padding-left: 0;
+        order: 2;
+        margin-top: 0;
+        min-height: 400px;
+        padding: 1.5rem;
     }
-}
 
-@media (max-width: 768px) {
+    .booking-summary {
+        order: 4;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        margin-top: 0;
+    }
+
+    .selected-info {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .book-button {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
     .performance-info {
         flex-direction: column;
+        max-width: 100%;
+        padding-left: 1.5rem;
+        gap: 1rem;
     }
 
     .performance-info img {
         width: 100%;
-        height: auto;
-        max-width: 237px;
+        height: 200px;
+        margin-bottom: 1rem;
+    }
+
+    .info {
+        padding-top: 0;
+    }
+
+    .info h2 {
+        font-size: 1.5rem;
     }
 
     .seating-plan {
-        padding: 10px;
+        max-width: 600px;
         gap: 8px;
+    }
+
+    .row {
+        gap: 8px;
+    }
+
+    .seat {
+        width: 30px;
+        height: 30px;
+    }
+
+    .stage {
+        padding: 0.6rem 1.5rem;
+        margin: 0 auto 2rem;
+        font-size: 1rem;
+        width: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tickets-page {
+        padding: 0.8rem;
+    }
+
+    .selected-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .selected-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .selected-info p {
+        font-size: 0.9rem;
+    }
+
+    .book-button {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .performance-info {
+        padding: 0.8rem;
+    }
+
+    .performance-info img {
+        height: 180px;
+    }
+
+    .info h2 {
+        font-size: 1.3rem;
+    }
+
+    .performance-details {
+        font-size: 0.9rem;
+    }
+
+    .seat-select {
+        min-height: 350px;
+        padding: 1rem;
+    }
+
+    .seating-plan {
+        gap: 6px;
+    }
+
+    .row {
+        gap: 6px;
     }
 
     .seat {
@@ -441,23 +631,83 @@
         height: 25px;
     }
 
-    .row {
-        gap: 6px;
+    .stage {
+        padding: 0.5rem 1rem;
+        margin: 0 auto 1.5rem;
+        font-size: 0.9rem;
+        width: 120px;
+    }
+
+    .performance-select {
+        margin-bottom: 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
     .tickets-page {
         padding: 0.5rem;
-        padding-left: 3rem;
     }
 
-    .seat {
-        width: 20px;
-        height: 20px;
+    .selected-info {
+        gap: 1rem;
+    }
+
+    .selected-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .selected-info p {
+        font-size: 0.8rem;
+    }
+
+    .book-button {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+
+    .performance-info {
+        padding: 0.6rem;
+    }
+
+    .performance-info img {
+        height: 160px;
+    }
+
+    .info h2 {
+        font-size: 1.2rem;
+    }
+
+    .performance-details {
+        font-size: 0.85rem;
+    }
+
+    .seat-select {
+        min-height: 300px;
+        padding: 0.8rem;
+    }
+
+    .seating-plan {
+        gap: 4px;
     }
 
     .row {
         gap: 4px;
+    }
+
+    .seat {
+        width: 22px;
+        height: 22px;
+        border-width: 1.5px;
+    }
+
+    .stage {
+        padding: 0.4rem 0.8rem;
+        margin: 0 auto 1rem;
+        font-size: 0.8rem;
+        width: 100px;
+    }
+
+    .performance-select {
+        margin-bottom: 0.5rem;
     }
 } 

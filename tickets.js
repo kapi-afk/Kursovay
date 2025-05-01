@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
         
         // Добавляем пустые ячейки для дней до начала месяца
-        for (let i = 0; i < firstDay.getDay(); i++) {
+        const firstDayOfWeek = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+        for (let i = 0; i < firstDayOfWeek; i++) {
             const emptyCell = document.createElement('div');
             emptyCell.classList.add('date-cell', 'empty');
             datesGrid.appendChild(emptyCell);
@@ -163,6 +164,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Установка обработчиков событий
     function setupEventListeners() {
+        // Обработчик для кнопки календаря
+        const calendarToggle = document.querySelector('.calendar-toggle');
+        const dateSelect = document.querySelector('.date-select');
+        const overlay = document.querySelector('.overlay');
+        
+        if (calendarToggle) {
+            calendarToggle.addEventListener('click', () => {
+                dateSelect.classList.toggle('active');
+                document.body.style.overflow = dateSelect.classList.contains('active') ? 'hidden' : '';
+            });
+        }
+
+        // Закрытие календаря при клике на оверлей
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                dateSelect.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
         prevButton.addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
             updateMonthDisplay();

@@ -126,7 +126,7 @@ nav {
 .show-info h2 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 .slider-btn {
@@ -320,6 +320,14 @@ footer {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    header {
+        padding: 0.5rem;
+    }
+
+    nav {
+        padding: 0;
+    }
+
     .nav-links {
         display: none;
     }
@@ -328,12 +336,25 @@ footer {
         position: static;
     }
 
+    .logo img {
+        height: 45px;
+    }
+
     .nav-buttons {
         margin-left: auto;
     }
 
+    .nav-links a {
+        display: none;
+    }
+
     .show-info h2 {
-        font-size: 2rem;
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .show-info p {
+        font-size: 0.8rem;
     }
 
     .footer-content {
@@ -352,8 +373,28 @@ footer {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 0.3rem;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .show-info {
+        padding: 1rem;
+    }
+
     .show-info h2 {
-        font-size: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .show-info p {
+        font-size: 0.7rem;
     }
 
     .social-icons a {
