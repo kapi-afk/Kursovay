@@ -81,8 +81,16 @@
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     z-index: 98;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
 }
 
 /* Date selection section */
@@ -469,11 +477,11 @@
     }
 
     .calendar-section {
-        display: none;
+        display: block;
         position: fixed;
-        top: 50%;
+        top: 20%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%) scale(0.95);
         width: 90%;
         max-width: 400px;
         background: #E8D7D7;
@@ -482,40 +490,38 @@
         margin: 0;
         z-index: 99;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s;
     }
 
     .date-select.active .calendar-section {
-        display: block;
-    }
-
-    .date-select.active .calendar-toggle i {
-        transform: rotate(180deg);
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+        pointer-events: auto;
     }
 
     .date-select.active ~ .overlay {
         display: block;
+        opacity: 1;
     }
 
     .performance-select {
-        order: 1;
+        order: 2;
         margin-bottom: 1rem;
     }
 
     .seat-select {
-        order: 2;
-        margin-top: 0;
-        min-height: 400px;
-        padding: 1.5rem;
+        order: 3;
     }
 
     .booking-summary {
         order: 4;
-        width: 100%;
+        width: 90%;
         max-width: none;
-        margin: 0;
+        margin: 1.5rem auto 1.5rem auto;
         padding: 1.5rem;
         background: rgba(255, 255, 255, 0.05);
-        margin-top: 0;
     }
 
     .selected-info {

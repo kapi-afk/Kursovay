@@ -168,11 +168,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const calendarToggle = document.querySelector('.calendar-toggle');
         const dateSelect = document.querySelector('.date-select');
         const overlay = document.querySelector('.overlay');
+        const calendarSection = document.querySelector('.calendar-section');
         
         if (calendarToggle) {
             calendarToggle.addEventListener('click', () => {
                 dateSelect.classList.toggle('active');
-                document.body.style.overflow = dateSelect.classList.contains('active') ? 'hidden' : '';
+                if (dateSelect.classList.contains('active')) {
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             });
         }
 
@@ -180,9 +187,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (overlay) {
             overlay.addEventListener('click', () => {
                 dateSelect.classList.remove('active');
+                overlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
         }
+
+        // Предотвращаем закрытие при клике на сам календарь
+        if (calendarSection) {
+            calendarSection.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // Закрытие календаря при клике вне его области
+        document.addEventListener('click', (e) => {
+            if (dateSelect.classList.contains('active') && 
+                !calendarSection.contains(e.target) && 
+                !calendarToggle.contains(e.target)) {
+                dateSelect.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
 
         prevButton.addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
