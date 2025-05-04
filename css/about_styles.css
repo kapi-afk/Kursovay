@@ -1,31 +1,30 @@
 @font-face {
-  font-family: 'KyivTypeSans-Regular';
-  src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
+  font-family: "KyivTypeSans-Regular";
+  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'KyivTypeSans-Medium';
-  src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
+  font-family: "KyivTypeSans-Medium";
+  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'KyivTypeSerif-Bold';
-  src: url('../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
+  font-family: "KyivTypeSerif-Bold";
+  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
 body {
-  font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
+  font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
+  font-family: "KyivTypeSerif-Bold", "KyivTypeSans-Medium", Arial, sans-serif;
 }
 
 /* Main content styles */
@@ -56,7 +55,8 @@ main {
   background-color: rgba(97, 52, 57, 0.3);
   padding: 2rem;
   border-radius: 8px;
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .about-us p,
@@ -120,7 +120,6 @@ main {
     font-size: 1.2rem;
   }
 }
-
 @media (max-width: 480px) {
   .about-us h2,
   .unique-features h2,
@@ -140,4 +139,4 @@ main {
   .unique-features strong {
     font-size: 1.1rem;
   }
-}
+}/*# sourceMappingURL=about_styles.css.map */

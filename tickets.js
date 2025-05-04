@@ -6,10 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (performanceInfo) {
             const img = performanceInfo.querySelector('img');
             const title = performanceInfo.querySelector('h2');
-            const cast = performanceInfo.querySelector('.cast');
             if (img) img.src = selectedPerformance.image;
             if (title) title.textContent = selectedPerformance.name;
-            if (cast) cast.style.display = 'none'; // Скрываем блок с актерами
         }
     }
 
@@ -337,4 +335,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Вызываем функцию после загрузки страницы
     document.addEventListener('DOMContentLoaded', setRandomOccupiedSeats);
+
+    // Modal functionality
+    const modal = document.querySelector('.booking-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const bookingForm = document.querySelector('.booking-form');
+
+    function showModal() {
+        const modalEl = document.querySelector('.booking-modal');
+        const performanceName = document.querySelector('.performance-info h2').textContent;
+        const selectedDateText = document.querySelector('.selected-date').textContent;
+
+        let seatsText = 'Не выбрано';
+        if (selectedSeats.length > 0) {
+            seatsText = selectedSeats
+                .sort((a, b) => a.row - b.row || a.seat - b.seat)
+                .map(s => `Ряд ${s.row}, Место ${s.seat}`)
+                .join('; ');
+        }
+
+        let totalPrice = '0 BYN.';
+        const selectedPerformance = JSON.parse(localStorage.getItem('selectedPerformance'));
+        if (selectedPerformance) {
+            totalPrice = `${selectedSeats.length * selectedPerformance.price} BYN.`;
+        }
+
+        // Обновляем содержимое только внутри модального окна!
+        modalEl.querySelector('.performance-name').textContent = performanceName;
+        modalEl.querySelector('.booking-date-time').textContent = selectedDateText;
+        modalEl.querySelector('.selected-seats').textContent = seatsText;
+        modalEl.querySelector('.total-price').textContent = totalPrice;
+
+        modalEl.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Event listeners for modal
+    bookButton.addEventListener('click', showModal);
+    closeModal.addEventListener('click', hideModal);
+    modal.querySelector('.modal-overlay').addEventListener('click', hideModal);
+
+    // Handle form submission
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        // Here you would typically send the booking information to your server
+        console.log('Booking submitted:', {
+            performance: document.querySelector('.performance-name').textContent,
+            dateTime: document.querySelector('.booking-date-time').textContent,
+            seats: document.querySelector('.selected-seats').textContent,
+            price: document.querySelector('.total-price').textContent,
+            email: email,
+            phone: phone
+        });
+
+        // Show success message and close modal
+        alert('Бронирование успешно оформлено!');
+        hideModal();
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            hideModal();
+        }
+    });
 }); 

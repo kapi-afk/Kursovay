@@ -1,50 +1,29 @@
 @font-face {
-  font-family: 'KyivTypeSans-Regular';
-  src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
+  font-family: "KyivTypeSans-Regular";
+  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'KyivTypeSans-Medium';
-  src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
+  font-family: "KyivTypeSans-Medium";
+  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'KyivTypeSerif-Bold';
-  src: url('../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
+  font-family: "KyivTypeSerif-Bold";
+  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
-// Variables
-$primary-color: var(--primary-color);
-$text-color: var(--text-color);
-$accent-color: var(--accent-color);
-$transition-speed: 0.3s;
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-// Header styles
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   padding: 1rem 2rem;
 }
 
@@ -60,10 +39,10 @@ nav {
 .logo {
   position: absolute;
   left: 0;
-  img {
-    height: 50px;
-    filter: brightness(0) invert(1);
-  }
+}
+.logo img {
+  height: 50px;
+  filter: brightness(0) invert(1);
 }
 
 .nav-links {
@@ -71,50 +50,49 @@ nav {
   display: flex;
   list-style: none;
   gap: 2rem;
-  a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    &:hover {
-      color: var(--accent-color);
-    }
-  }
+}
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: var(--accent-color);
 }
 
 .nav-buttons {
   display: flex;
   gap: 1rem;
-  button {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    &:hover {
-      color: var(--accent-color);
-    }
-  }
+}
+.nav-buttons button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.nav-buttons button:hover {
+  color: var(--accent-color);
 }
 
-// Burger menu styles
 .burger-menu {
   position: fixed;
   top: 0;
   right: -350px;
   width: 350px;
   height: 100vh;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   transition: right 0.3s ease;
   z-index: 1000;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-  &.active {
-    right: 0;
-  }
+}
+.burger-menu.active {
+  right: 0;
 }
 
 .burger-menu-header {
@@ -128,27 +106,31 @@ nav {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid $text-color;
+  border-bottom: 1px solid var(--text-color);
   padding-bottom: 0.5rem;
   width: 80%;
-  input {
-    background: none;
-    border: none;
-    color: $text-color;
-    font-size: 1.1rem;
-    width: 100%;
-    outline: none;
-    &::placeholder {
-      color: $text-color;
-      opacity: 0.7;
-    }
-  }
+}
+.search-container input {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  width: 100%;
+  outline: none;
+}
+.search-container input::-moz-placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+.search-container input::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
 }
 
 .close-menu {
   background: none;
   border: none;
-  color: $text-color;
+  color: var(--text-color);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -158,40 +140,40 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  a {
-    color: $text-color;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: opacity 0.3s ease;
-    &:hover {
-      opacity: 0.7;
-    }
-  }
+}
+.burger-menu-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: opacity 0.3s ease;
+}
+.burger-menu-nav a:hover {
+  opacity: 0.7;
 }
 
 .social-icons {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
-    &:hover img {
-      opacity: 0.8;
-    }
-  }
+}
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-icons a img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.social-icons a:hover img {
+  opacity: 0.8;
 }
 
-// Media queries
 @media (max-width: 768px) {
   nav {
     display: flex !important;
@@ -209,12 +191,12 @@ nav {
     min-height: unset !important;
     max-height: none !important;
     flex: 0 0 auto !important;
-    img {
-      height: 75px !important;
-      width: auto !important;
-      max-width: 100% !important;
-      display: block !important;
-    }
+  }
+  .logo img {
+    height: 75px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    display: block !important;
   }
   .nav-buttons {
     display: flex !important;
@@ -227,7 +209,6 @@ nav {
     display: none !important;
   }
 }
-
 @media (max-width: 480px) {
   nav {
     display: flex !important;
@@ -245,12 +226,12 @@ nav {
     min-height: unset !important;
     max-height: none !important;
     flex: 0 0 auto !important;
-    img {
-      height: 50px !important;
-      width: auto !important;
-      max-width: 100% !important;
-      display: block !important;
-    }
+  }
+  .logo img {
+    height: 50px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    display: block !important;
   }
   .nav-buttons {
     display: flex !important;
@@ -263,11 +244,10 @@ nav {
     display: none !important;
   }
 }
-
 body {
-  font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
+  font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
-} 
+  font-family: "KyivTypeSerif-Bold", "KyivTypeSans-Medium", Arial, sans-serif;
+}/*# sourceMappingURL=burger_menu_styles.css.map */

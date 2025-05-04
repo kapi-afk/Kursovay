@@ -1,20 +1,104 @@
-// Variables
-$accent-color: var(--accent-color);
-$primary-bg: #E8D7D7;
-$primary-text: #4D2828;
-$shadow-color: rgba(0, 0, 0, 0.2);
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@font-face {
+  font-family: 'KyivTypeSans-Regular';
+  src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KyivTypeSans-Medium';
+  src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KyivTypeSerif-Bold';
+  src: url('../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
-@mixin flex-between {
+// Variables
+$primary-color: #613439;
+$secondary-color: #1F1E20;
+$text-color: #E8D1C9;
+$accent-color: #b56965;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
+  background-color: $secondary-color;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
+}
+
+header {
+  background-color: $primary-color;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  img {
+    height: 50px;
+    filter: brightness(0) invert(1);
+  }
+}
+
+.nav-links {
+  margin: 0 auto;
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  a {
+    color: $text-color;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  button {
+    background: none;
+    border: none;
+    color: $text-color;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    &:hover {
+      color: $accent-color;
+    }
+  }
 }
 
 // Hero section

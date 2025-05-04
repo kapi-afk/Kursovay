@@ -20,7 +20,6 @@
                 <li><a href="performances.html">Выступления</a></li>
             </ul>
             <div class="nav-buttons">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
                 <button class="menu-btn"><i class="fas fa-bars"></i></button>
             </div>
         </nav>
@@ -29,10 +28,6 @@
     <!-- Burger Menu -->
     <div class="burger-menu">
         <div class="burger-menu-header">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Чем помочь?">
-            </div>
             <button class="close-menu"><i class="fas fa-times"></i></button>
         </div>
         <nav class="burger-menu-nav">
@@ -167,7 +162,7 @@
                 </div>
                 <div class="total-price">
                     <h3>Итого</h3>
-                    <p class="price">0 ₽</p>
+                    <p class="price">0 BYN</p>
                 </div>
             </div>
             <button class="book-button" disabled>Перейти к оформлению</button>
@@ -179,10 +174,10 @@
             <div class="social-links">
                 <h3>Социальные сети</h3>
                 <div class="social-icons">
-                    <a href="#" id="inst"><img src="images/icons8-instagram.svg" alt="Instagram"></a>
-                    <a href="#"><img src="images/icons8-facebook.svg" alt="Facebook"></a>
-                    <a href="#"><img src="images/icons8-youtube.svg" alt="Youtube"></a>
-                    <a href="#" id="X"><img src="images/icons8-твиттерх.svg" alt="Twitter"></a>
+                    <a href="home.html" id="inst"><img src="images/icons8-instagram.svg" alt="Instagram"></a>
+                    <a href="home.html"><img src="images/icons8-facebook.svg" alt="Facebook"></a>
+                    <a href="home.html"><img src="images/icons8-youtube.svg" alt="Youtube"></a>
+                    <a href="home.html" id="X"><img src="images/icons8-твиттерх.svg" alt="Twitter"></a>
                 </div>
             </div>
             <div class="contact-info">
@@ -196,5 +191,42 @@
 
     <script src="menu.js"></script>
     <script src="tickets.js"></script>
+
+    <div class="booking-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Подтверждение бронирования</h2>
+            <div class="booking-details">
+                <div class="detail-item">
+                    <h3>Спектакль</h3>
+                    <p class="performance-name"></p>
+                </div>
+                <div class="detail-item">
+                    <h3>Дата и время</h3>
+                    <p class="booking-date-time"></p>
+                </div>
+                <div class="detail-item">
+                    <h3>Выбранные места</h3>
+                    <p class="selected-seats"></p>
+                </div>
+                <div class="detail-item">
+                    <h3>Итого к оплате</h3>
+                    <p class="total-price"></p>
+                </div>
+            </div>
+            <form class="booking-form">
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <button type="submit" class="confirm-booking">Подтвердить бронирование</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html> 
