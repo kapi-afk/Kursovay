@@ -1,140 +1,111 @@
-// Variables
-$text-color: var(--text-color);
-$accent-color: var(--accent-color);
-$primary-color: var(--primary-color);
-$card-bg: #C3AAA1;
-$card-text: #333;
-$hover-btn-bg: #b56965;
-$shadow-light: rgba(0, 0, 0, 0.1);
-$shadow-dark: rgba(0, 0, 0, 0.15);
-
-// Mixins
-@mixin card-shadow($opacity) {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, $opacity);
-}
-
-@mixin transition($properties...) {
-  transition: $properties;
-}
-
-// Performances styles
 .performances {
-  padding: 2rem;
-  max-width: 1600px;
-  margin: 0 auto;
-}
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
 
-.genre-section {
-  margin-bottom: 3rem;
+    .genre-section {
+        margin-bottom: 3rem;
 
-  h2 {
-    font-size: 2rem;
-    color: $text-color;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    padding-left: 1rem;
-    border-left: 4px solid $accent-color;
-  }
-}
-
-.performance-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(400px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.performance-card {
-  background: $card-bg;
-  border-radius: 10px;
-  overflow: hidden;
-  @include card-shadow(0.1);
-  @include transition(transform 0.3s ease, box-shadow 0.3s ease);
-
-  &:hover {
-    transform: translateY(-5px);
-    @include card-shadow(0.15);
-
-    img {
-      transform: scale(1.05);
+        h2 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
     }
-  }
 
-  img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    @include transition(transform 0.3s ease);
-  }
-}
+    .performance-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
 
-.performance-info {
-  padding: 1rem;
-  text-align: left;
+        .performance-card {
+            background: #C3AAA1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.8rem;
-    color: $card-text;
-    text-align: left;
-  }
-}
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 
-.buy-ticket {
-  background-color: $primary-color;
-  color: $text-color;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  @include transition(background-color 0.3s ease);
-  width: 100%;
-  display: block;
+                img {
+                    transform: scale(1.05);
+                }
+            }
 
-  &:hover {
-    background-color: $hover-btn-bg;
-  }
-}
+            img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
 
-// Media queries
-@media (max-width: 1400px) {
-  .performance-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+            .performance-info {
+                padding: 1rem;
+                text-align: left;
 
-@media (max-width: 768px) {
-  .performance-grid {
-    grid-template-columns: 1fr;
-  }
+                h3 {
+                    font-size: 1.25rem;
+                    margin-bottom: 0.8rem;
+                    color: #333;
+                    text-align: left;
+                }
 
-  .performance-card {
-    img {
-      height: 200px;
+                .buy-ticket {
+                    background-color: var(--primary-color);
+                    color: var(--text-color);
+                    border: none;
+                    padding: 0.6rem 1.2rem;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    transition: background-color 0.3s ease;
+                    width: 100%;
+                    display: block;
+
+                    &:hover {
+                        background-color: #b56965;
+                    }
+                }
+            }
+        }
     }
-  }
 
-  .genre-section {
-    h2 {
-      font-size: 1.75rem;
+    @media (max-width: 1400px) {
+        .performance-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-  }
+
+    @media (max-width: 768px) {
+        .performance-grid {
+            grid-template-columns: 1fr;
+
+            .performance-card img {
+                height: 200px;
+            }
+        }
+
+        .genre-section h2 {
+            font-size: 1.75rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem;
+
+        .performance-info h3 {
+            font-size: 1.2rem;
+        }
+
+        .buy-ticket {
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+        }
+    }
 }
-
-@media (max-width: 480px) {
-  .performances {
-    padding: 1rem;
-  }
-
-  .performance-info {
-    h3 {
-      font-size: 1.2rem;
-    }
-  }
-
-  .buy-ticket {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-  }
-} 

@@ -3,11 +3,10 @@
   max-width: 1600px;
   margin: 0 auto;
 }
-
-.genre-section {
+.performances .genre-section {
   margin-bottom: 3rem;
 }
-.genre-section h2 {
+.performances .genre-section h2 {
   font-size: 2rem;
   color: var(--text-color);
   margin-bottom: 1.5rem;
@@ -15,48 +14,44 @@
   padding-left: 1rem;
   border-left: 4px solid var(--accent-color);
 }
-
-.performance-grid {
+.performances .performance-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(400px, 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
 }
-
-.performance-card {
+.performances .performance-grid .performance-card {
   background: #C3AAA1;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.performance-card:hover {
+.performances .performance-grid .performance-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-.performance-card:hover img {
+.performances .performance-grid .performance-card:hover img {
   transform: scale(1.05);
 }
-.performance-card img {
+.performances .performance-grid .performance-card img {
   width: 100%;
   height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
   transition: transform 0.3s ease;
 }
-
-.performance-info {
+.performances .performance-grid .performance-card .performance-info {
   padding: 1rem;
   text-align: left;
 }
-.performance-info h3 {
+.performances .performance-grid .performance-card .performance-info h3 {
   font-size: 1.25rem;
   margin-bottom: 0.8rem;
   color: #333;
   text-align: left;
 }
-
-.buy-ticket {
+.performances .performance-grid .performance-card .performance-info .buy-ticket {
   background-color: var(--primary-color);
   color: var(--text-color);
   border: none;
@@ -68,23 +63,22 @@
   width: 100%;
   display: block;
 }
-.buy-ticket:hover {
+.performances .performance-grid .performance-card .performance-info .buy-ticket:hover {
   background-color: #b56965;
 }
-
 @media (max-width: 1400px) {
-  .performance-grid {
+  .performances .performance-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 768px) {
-  .performance-grid {
+  .performances .performance-grid {
     grid-template-columns: 1fr;
   }
-  .performance-card img {
+  .performances .performance-grid .performance-card img {
     height: 200px;
   }
-  .genre-section h2 {
+  .performances .genre-section h2 {
     font-size: 1.75rem;
   }
 }
@@ -92,10 +86,10 @@
   .performances {
     padding: 1rem;
   }
-  .performance-info h3 {
+  .performances .performance-info h3 {
     font-size: 1.2rem;
   }
-  .buy-ticket {
+  .performances .buy-ticket {
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
   }
