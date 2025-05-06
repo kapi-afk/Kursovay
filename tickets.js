@@ -330,7 +330,6 @@ document.addEventListener('DOMContentLoaded', function() {
             totalPrice = `${selectedSeats.length * selectedPerformance.price} BYN.`;
         }
 
-        // Обновляем содержимое только внутри модального окна!
         modalEl.querySelector('.performance-name').textContent = performanceName;
         modalEl.querySelector('.booking-date-time').textContent = selectedDateText;
         modalEl.querySelector('.selected-seats').textContent = seatsText;
@@ -345,24 +344,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
 
-    // Event listeners for modal
     bookButton.addEventListener('click', showModal);
     closeModal.addEventListener('click', hideModal);
     modal.querySelector('.modal-overlay').addEventListener('click', hideModal);
 
-    // Handle form submission
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
 
-        // Сохраняем забронированные места
         if (selectedDate && selectedTime && selectedSeats.length > 0) {
             saveBookedSeats(selectedSeats, selectedDate, selectedTime);
         }
 
-        // Here you would typically send the booking information to your server
         console.log('Booking submitted:', {
             performance: document.querySelector('.performance-name').textContent,
             dateTime: document.querySelector('.booking-date-time').textContent,
@@ -372,7 +367,6 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: phone
         });
 
-        // Очищаем отображение информации о бронировании
         if (selectedSeatsDisplay) {
             selectedSeatsDisplay.textContent = 'Не выбрано';
         }
@@ -383,18 +377,18 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedDateDisplay.textContent = 'Не выбрано';
         }
         
-        // Сбрасываем выбранное время в выпадающем списке
         if (timeSelectBtn) {
             timeSelectBtn.textContent = 'Выберите время';
         }
         
-        // Сбрасываем выбранные места на схеме
         const seats = document.querySelectorAll('.seat');
         seats.forEach(seat => {
             seat.classList.remove('selected');
         });
         
-        // Деактивируем кнопку бронирования
+        selectedSeats = [];
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
         bookButton.disabled = true;
 
         alert('Бронирование успешно оформлено!');
@@ -407,7 +401,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Функция для проверки, является ли место забронированным
     function isSeatBooked(row, seat, date, time) {
         const bookedSeats = JSON.parse(localStorage.getItem('bookedSeats')) || {};
         const performanceId = selectedPerformance.id;
@@ -416,22 +409,18 @@ document.addEventListener('DOMContentLoaded', function() {
         return bookedSeatsForDate.some(s => s.row === row && s.seat === seat);
     }
 
-    // Функция для сохранения забронированных мест
     function saveBookedSeats(seats, date, time) {
         const bookedSeats = JSON.parse(localStorage.getItem('bookedSeats')) || {};
         const performanceId = selectedPerformance.id;
         const dateKey = `${performanceId}_${date.toISOString().split('T')[0]}_${time}`;
         
-        // Получаем текущие забронированные места для этой даты и выступления
         const currentBookedSeats = bookedSeats[dateKey] || [];
-        
-        // Добавляем новые места к существующим
-        bookedSeats[dateKey] = [...currentBookedSeats, ...seats];
+        const newSeats = seats.filter(newSeat => !currentBookedSeats.some(s => s.row === newSeat.row && s.seat === newSeat.seat));
+        bookedSeats[dateKey] = [...currentBookedSeats, ...newSeats];
         
         localStorage.setItem('bookedSeats', JSON.stringify(bookedSeats));
     }
 
-    // Функция для отображения занятых мест
     function updateOccupiedSeats() {
         if (!seatingPlan || !selectedDate || !selectedTime) return;
 
@@ -440,33 +429,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = seat.dataset.row;
             const seatNum = seat.dataset.seat;
             
-            // Проверяем, забронировано ли место
             if (isSeatBooked(row, seatNum, selectedDate, selectedTime)) {
                 seat.classList.add('occupied');
                 seat.classList.remove('selected');
                 seat.style.cursor = 'not-allowed';
-                seat.style.backgroundColor = '##4D2828'; // Бордовый цвет для занятых мест
-                seat.style.color = 'white'; // Белый текст для лучшей читаемости
-                seat.style.pointerEvents = 'none'; // Отключаем все события мыши
+                seat.style.backgroundColor = '##4D2828'; 
+                seat.style.color = 'white'; 
+                seat.style.pointerEvents = 'none'; 
             } else {
                 seat.classList.remove('occupied');
                 seat.style.cursor = 'pointer';
-                seat.style.backgroundColor = ''; // Возвращаем исходный цвет
-                seat.style.color = ''; // Возвращаем исходный цвет текста
-                seat.style.pointerEvents = ''; // Возвращаем обработку событий мыши
+                seat.style.backgroundColor = ''; 
+                seat.style.color = ''; 
+                seat.style.pointerEvents = ''; 
             }
         });
     }
 
-    // Добавляем обработчик для очистки данных
     document.addEventListener('keydown', function(e) {
-        // Проверяем нажатие Ctrl + F5
         if (e.ctrlKey && e.key === 'F5') {
-            // Очищаем localStorage
             localStorage.removeItem('bookedSeats');
-            // Перезагружаем страницу
             location.reload();
         }
     });
 }); 
-

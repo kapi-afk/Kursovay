@@ -87,10 +87,14 @@ nav .nav-buttons button:hover {
 .slider-container .slide {
   min-width: 100%;
   position: relative;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .slider-container .slide .featured-image {
   width: 100%;
   height: auto;
+  object-fit: cover;
   display: block;
 }
 .slider-container .slide .show-info {
@@ -98,12 +102,18 @@ nav .nav-buttons button:hover {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 2rem;
+  height: auto;
+  padding: 0 1rem 1rem 1rem;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
 }
 .slider-container .slide .show-info h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem !important;
+  margin-bottom: 0.1rem;
   color: #E8D1C9;
 }
 .slider-container .slider-btn {
@@ -170,6 +180,7 @@ nav .nav-buttons button:hover {
 }
 .premieres .premiere-grid .premiere-card {
   position: relative;
+  height: auto;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -180,6 +191,7 @@ nav .nav-buttons button:hover {
 .premieres .premiere-grid .premiere-card img {
   width: 100%;
   height: auto;
+  object-fit: cover;
   display: block;
 }
 .premieres .premiere-grid .premiere-card .premiere-info {
@@ -251,6 +263,11 @@ footer .footer-content .social-icons a {
 }
 footer .footer-content .social-icons a:hover {
   color: #b56965;
+}
+footer .footer-content .social-icons a img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
 }
 
 .rep-wrapper {
@@ -459,5 +476,56 @@ html {
     gap: 3rem;
     display: grid;
     padding: 30px 1rem 0;
+  }
+}
+
+.more-link {
+  display: inline-block;
+  color: #E8D1C9;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 0.1rem;
+  transition: color 0.3s ease;
+  text-align: left;
+}
+
+.more-link:hover {
+  color: #b56965;
+}
+
+.show-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  text-align: center;
+}
+
+.premiere-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  padding: 0 1rem 1rem 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.premiere-info h3 {
+  font-size: 0.95rem !important;
+  margin-bottom: 0.1rem;
+}
+
+@media (min-width: 600px) {
+  .slider-container .slide,
+  .premieres .premiere-grid .premiere-card {
+    height: auto;
   }
 }/*# sourceMappingURL=home_styles.css.map */
