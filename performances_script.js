@@ -34,14 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.1
     });
 
-    // Observe all performance cards
     document.querySelectorAll('.performance-card').forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
         observer.observe(card);
     });
 
-    // Add animation styles
     const style = document.createElement('style');
     style.textContent = `
         .fade-in {
@@ -61,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // Buy ticket button click handler
     document.querySelectorAll('.buy-ticket').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -69,15 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const performanceName = performanceCard.querySelector('h3').textContent;
             const performanceImage = performanceCard.querySelector('img').src;
             
-            // Сохраняем информацию о выступлении в localStorage
             localStorage.setItem('selectedPerformance', JSON.stringify({
                 name: performanceName,
                 image: performanceImage,
-                price: 30, // Цена билета в бел. рублях
+                price: 30, 
                 schedule: performanceSchedules[performanceName]
             }));
             
-            // Перенаправляем на страницу билетов
             window.location.href = 'tickets.html';
         });
     });

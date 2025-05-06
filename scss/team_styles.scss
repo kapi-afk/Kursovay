@@ -1,7 +1,7 @@
 // Font faces
 @font-face {
     font-family: 'KyivTypeSans-Regular';
-    src: url('../KyivTypeSans-Regular-.woff2') format('woff2');
+    src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -9,7 +9,7 @@
   
   @font-face {
     font-family: 'KyivTypeSans-Medium';
-    src: url('../KyivTypeSans-Medium-.woff2') format('woff2');
+    src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -23,7 +23,6 @@
     font-display: swap;
   }
   
-  // Base typography
   body {
     font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
   }
