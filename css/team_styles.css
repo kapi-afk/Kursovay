@@ -1,20 +1,20 @@
 @font-face {
   font-family: "KyivTypeSans-Regular";
-  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
+  src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSans-Medium";
-  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
+  src: url("fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSerif-Bold";
-  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
+  src: url("fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -31,38 +31,42 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2rem;
   background-color: var(--secondary-color);
 }
-.team .team-section {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 .team h2 {
-  color: #fff;
+  color: var(--text-color);
   font-size: 2.5rem;
   margin-bottom: 2rem;
   text-align: center;
 }
-.team .team-group {
+
+.team-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-group {
   margin-bottom: 4rem;
 }
-.team .team-group h3 {
+.team-group h3 {
   color: var(--text-color);
   font-size: 1.8rem;
   margin-bottom: 2rem;
   font-weight: normal;
 }
-.team .team-grid {
+
+.team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   justify-items: center;
 }
-.team .team-member {
+
+.team-member {
   width: 350px;
   height: 400px;
   perspective: 1000px;
   cursor: pointer;
 }
-.team .team-member .team-member-inner {
+.team-member-inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -71,8 +75,10 @@ h1, h2, h3, h4, h5, h6 {
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.team .team-member .team-member-inner .team-member-front,
-.team .team-member .team-member-inner .team-member-back {
+.team-member:hover .team-member-inner {
+  transform: rotateY(180deg);
+}
+.team-member-front, .team-member-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -80,16 +86,16 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   overflow: hidden;
 }
-.team .team-member .team-member-inner .team-member-front {
+.team-member-front {
   background-color: #fff;
 }
-.team .team-member .team-member-inner .team-member-front img {
+.team-member-front img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.team .team-member .team-member-inner .team-member-back {
+.team-member-back {
   background-color: var(--primary-color);
   transform: rotateY(180deg);
   display: flex;
@@ -98,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   padding: 2rem;
 }
-.team .team-member .team-member-inner .team-member-back h4 {
+.team-member-back h4 {
   color: var(--text-color);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -106,26 +112,24 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 2px;
   font-weight: 600;
 }
-.team .team-member .team-member-inner .team-member-back p {
+.team-member-back p {
   color: var(--text-color);
   font-size: 1.2rem;
   line-height: 1.6;
   opacity: 0.8;
 }
-.team .team-member:hover .team-member-inner {
-  transform: rotateY(180deg);
-}
+
 @media (max-width: 1200px) {
-  .team .team-member {
+  .team-member {
     width: 300px;
     height: 350px;
   }
 }
 @media (max-width: 992px) {
-  .team .team-grid {
+  .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .team .team-member {
+  .team-member {
     width: 280px;
     height: 320px;
   }
@@ -137,19 +141,19 @@ h1, h2, h3, h4, h5, h6 {
   .team h2 {
     font-size: 2rem;
   }
-  .team .team-group h3 {
+  .team-group h3 {
     font-size: 1.5rem;
   }
-  .team .team-member {
+  .team-member {
     width: 250px;
     height: 300px;
   }
 }
 @media (max-width: 576px) {
-  .team .team-grid {
-    grid-template-columns: 1fr;
+  .team-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
-  .team .team-member {
+  .team-member {
     width: 280px;
     height: 320px;
   }

@@ -1,867 +1,904 @@
-// Font faces
+/* Переменные */
+$font-regular: 'KyivTypeSans-Regular', Arial, sans-serif;
+$font-medium: 'KyivTypeSans-Medium', Arial, sans-serif;
+$font-bold: 'KyivTypeSerif-Bold', Arial, sans-serif;
+$accent-color: var(--accent-color);
+$primary-color: var(--primary-color);
+$text-color: var(--text-color);
+$calendar-bg: #E8D7D7;
+$calendar-text: #4D2828;
+$seat-bg: #E8D7D7;
+$seat-border: #4D2828;
+$modal-bg: #282526;
+$modal-accent: #613439;
+
+/* Миксины */
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $easing: ease) {
+  transition: $property $duration $easing;
+}
+
+@mixin card-style($bg, $radius: 10px, $padding: 1rem) {
+  background: $bg;
+  border-radius: $radius;
+  padding: $padding;
+}
+
+@mixin responsive-grid($columns, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+/* Шрифты */
 @font-face {
-    font-family: 'KyivTypeSans-Regular';
-    src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'KyivTypeSans-Regular';
+  src: url('fonts/KyivTypeSans-Regular-.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KyivTypeSans-Medium';
+  src: url('.../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KyivTypeSerif-Bold';
+  src: url('.../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Базовые стили */
+body {
+  font-family: $font-regular;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-bold;
+}
+
+/* Страница билетов */
+.tickets-page {
+  max-width: 1200px;
+  margin: 0;
+  padding: 2rem 1rem 1rem 5rem;
+  display: grid;
+  grid-template-columns: 280px 900px;
+  grid-template-rows: auto auto auto;
+  gap: 1rem 6rem;
+
+  /* Выбор представления */
+  .performance-select {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  
-  @font-face {
-    font-family: 'KyivTypeSans-Medium';
-    src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'KyivTypeSerif-Bold';
-    src: url('../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  body {
-    font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
-  }
-  
-  .tickets-page {
-    max-width: 1200px;
-    margin: 0;
-    padding: 2rem 1rem 1rem 5rem;
-    display: grid;
-    grid-template-columns: 280px 900px;
-    grid-template-rows: auto auto auto;
-    gap: 1rem 6rem;
-  
-    .performance-select {
-      grid-column: 2;
-      grid-row: 1;
-      margin-bottom: 0.5rem;
-      width: 100%;
-      height: auto;
-      position: relative;
-  
-      .performance-info {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 0.8rem 3rem;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 2rem;
-        margin-bottom: 0.5rem;
-        max-width: 900px;
-  
-        img {
-          width: 300px;
-          height: 150px;
-          border-radius: 5px;
-          object-fit: cover;
-          margin-bottom: 0;
-          flex-shrink: 0;
-        }
-  
-        .info {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          flex-grow: 1;
-          padding-top: 0.5rem;
-  
-          h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: var(--accent-color);
-            text-align: left;
-          }
-  
-          .performance-details {
-            margin-top: 0.5rem;
-            width: 100%;
-            text-align: left;
-  
-            .cast {
-              font-size: 1.1rem;
-              margin-bottom: 0.4rem;
-            }
-  
-            .duration {
-              color: rgba(255, 255, 255, 0.7);
-              font-size: 0.95rem;
-            }
-          }
-        }
-      }
+
+  .performance-info {
+    @include card-style(rgba(255, 255, 255, 0.05), 8px, 0.8rem);
+    padding-left: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 0.5rem;
+    max-width: 900px;
+
+    img {
+      width: 300px;
+      height: 150px;
+      border-radius: 5px;
+      object-fit: cover;
+      margin-bottom: 0;
+      flex-shrink: 0;
     }
-  
-    .date-select {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-      width: 100%;
-      max-width: 280px;
-      max-height: 330px;
-      padding: 8px 0.5rem;
-      background-color: #E8D7D7;
-      border-radius: 20px;
-      margin: 0 4rem 0 3rem;
-      color: #4D2828;
-      transition: max-height 0.3s ease;
-  
-      h2 {
-        font-size: 1em;
-        margin-bottom: 0.8rem;
-        color: #4D2828;
-      }
-  
-      .calendar-toggle {
-        display: none;
-        width: 100%;
-        padding: 12px;
-        background: #E8D7D7;
-        border: none;
-        border-radius: 10px;
-        color: #4D2828;
-        font-size: 1rem;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: #d8c7c7;
-        }
-  
-        i {
-          transition: transform 0.3s ease;
-        }
-      }
-  
-      .calendar-section {
-        margin-bottom: 0.5rem;
-  
-        .calendar-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 0.7rem;
-          color: #4D2828;
-  
-          .month-nav {
-            background: none;
-            border: none;
-            font-size: 18px;
-            color: #4D2828;
-            cursor: pointer;
-            padding: 5px;
-          }
-  
-          .current-month {
-            font-size: 1.1em;
-            margin: 0;
-            font-weight: bold;
-            color: #4D2828;
-          }
-        }
-  
-        .weekdays {
-          display: grid;
-          grid-template-columns: repeat(7, 1fr);
-          gap: 3px;
-          margin-bottom: 8px;
-          text-align: center;
-          padding: 0 12px;
-  
-          .weekday {
-            font-weight: bold;
-            color: #4D2828;
-            padding: 3px 0;
-            font-size: 0.85em;
-            text-align: center;
-            line-height: 1.2;
-          }
-        }
-  
-        .dates-grid {
-          display: grid;
-          grid-template-columns: repeat(7, 1fr);
-          gap: 3px;
-  
-          .date-cell {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: 1px solid #4D2828;
-            border-radius: 5px;
-            font-size: 0.9em;
-            color: #4D2828;
-            cursor: pointer;
-            transition: all 0.3s ease;
-  
-            &:hover:not(.disabled):not(.empty) {
-              background: rgba(77, 40, 40, 0.1);
-            }
-  
-            &.selected {
-              background: #4D2828;
-              color: white;
-            }
-  
-            &.disabled {
-              background: rgba(77, 40, 40, 0.05);
-              color: rgba(77, 40, 40, 0.4);
-              cursor: default;
-            }
-  
-            &.empty {
-              border: none;
-              cursor: default;
-            }
-          }
-        }
-      }
-  
-      .time-select {
-        margin-top: 0.5rem;
-        position: relative;
-        width: 100%;
-  
-        &.active {
-          .time-select-btn i {
-            transform: rotate(180deg);
-          }
-  
-          .time-options {
-            display: block;
-          }
-        }
-  
-        .time-select-btn {
-          width: 100%;
-          padding: 10px;
-          background: #fff;
-          border: 1px solid #4D2828;
-          border-radius: 8px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          cursor: pointer;
-          color: #4D2828;
-          font-size: 1em;
-  
-          i {
-            transition: transform 0.3s ease;
-          }
-        }
-  
-        .time-options {
-          position: absolute;
-          top: calc(100% + 5px);
-          left: 0;
-          right: 0;
-          background: #fff;
-          border: 1px solid #4D2828;
-          border-radius: 8px;
-          display: none;
-          overflow: hidden;
-  
-          .time-option {
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-  
-            &:hover {
-              background: rgba(77, 40, 40, 0.05);
-            }
-  
-            .time {
-              color: #4D2828;
-              font-weight: bold;
-            }
-  
-            &.selected {
-              background: rgba(77, 40, 40, 0.1);
-            }
-          }
-        }
-      }
-    }
-  
-    .booking-summary {
-      grid-column: 1;
-      grid-row: 3;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.2rem;
-      border-radius: 10px;
-      height: fit-content;
-      width: 280px;
-      margin: -2rem 4rem 0 3rem;
-  
-      .selected-info {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-        margin-bottom: 1.2rem;
-        width: 100%;
-  
-        h3 {
-          margin-bottom: 0.5rem;
-          color: var(--accent-color);
-          font-size: 0.9rem;
-          width: 100%;
-          text-align: left;
-        }
-  
-        p {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.85rem;
-          width: 100%;
-          text-align: left;
-        }
-      }
-  
-      .book-button {
-        width: 100%;
-        padding: 0.8rem;
-        background: var(--accent-color);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: opacity 0.3s ease;
-  
-        &:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-  
-        &:hover:not(:disabled) {
-          opacity: 0.9;
-        }
-      }
-    }
-  
-    .seat-select {
-      grid-column: 2;
-      grid-row: 2 / span 2;
-      background: #E8D7D7;
-      padding: 2rem;
-      border-radius: 10px;
-      text-align: center;
-      height: auto;
-      min-height: 500px;
-      margin-top: 0;
+
+    .info {
       display: flex;
       flex-direction: column;
-  
-      .stage {
-        background: #4D2828;
-        color: white;
-        text-align: center;
-        padding: 0.8rem 2rem;
-        border-radius: 100px;
-        margin: 0 auto 2.5rem;
-        font-size: 1.1rem;
-        width: 150px;
+      align-items: flex-start;
+      flex-grow: 1;
+      padding-top: 0.5rem;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+        color: $accent-color;
+        text-align: left;
       }
-  
-      .seating-plan {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 0;
-  
-        .row {
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-        }
-  
-        .seat {
-          width: 35px;
-          height: 35px;
-          border: 2px solid #4D2828;
-          background: transparent;
-          border-radius: 5px;
+    }
+
+    .performance-details {
+      margin-top: 0.5rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .cast {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .duration {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Календарь */
+  .date-select {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 100%;
+    max-width: 280px;
+    max-height: 330px;
+    padding: 8px;
+    padding-left: 0.5rem;
+    background-color: $calendar-bg;
+    border-radius: 20px;
+    margin: 0 4rem 0 3rem;
+    color: $calendar-text;
+    @include transition(max-height);
+
+    &:has(.dates-grid .date-cell:nth-child(43)) {
+      max-height: 375px;
+    }
+
+    h2 {
+      font-size: 1em;
+      margin-bottom: 0.8rem;
+      color: $calendar-text;
+    }
+
+    .calendar-toggle {
+      display: none;
+      width: 100%;
+      padding: 12px;
+      background: $calendar-bg;
+      border: none;
+      border-radius: 10px;
+      color: $calendar-text;
+      font-size: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      @include transition(background-color);
+
+      &:hover {
+        background-color: darken($calendar-bg, 5%);
+      }
+
+      i {
+        @include transition(transform);
+      }
+    }
+
+    .calendar-section {
+      margin-bottom: 0.5rem;
+
+      .calendar-header {
+        @include flex-center(row);
+        justify-content: space-between;
+        margin-bottom: 0.7rem;
+        color: $calendar-text;
+
+        .month-nav {
+          background: none;
+          border: none;
+          font-size: 18px;
+          color: $calendar-text;
           cursor: pointer;
-          transition: all 0.2s ease;
-          position: relative;
-  
-          &.available {
-            background: #E8D7D7;
-            border-color: #4D2828;
+          padding: 5px;
+        }
+
+        .current-month {
+          font-size: 1.1em;
+          margin: 0;
+          font-weight: bold;
+          color: $calendar-text;
+        }
+      }
+
+      .weekdays {
+        @include responsive-grid(7, 3px);
+        margin-bottom: 8px;
+        text-align: center;
+        padding: 0 12px;
+
+        .weekday {
+          font-weight: bold;
+          color: $calendar-text;
+          padding: 3px 0;
+          font-size: 0.85em;
+          text-align: center;
+          line-height: 1.2;
+        }
+      }
+
+      .dates-grid {
+        @include responsive-grid(7, 3px);
+
+        .date-cell {
+          aspect-ratio: 1;
+          @include flex-center;
+          background: transparent;
+          border: 1px solid $calendar-text;
+          border-radius: 5px;
+          font-size: 0.9em;
+          color: $calendar-text;
+          cursor: pointer;
+          @include transition;
+
+          &:hover:not(.disabled):not(.empty) {
+            background: rgba($calendar-text, 0.1);
           }
-  
-          &.occupied {
-            background: #4D2828;
-            border-color: #4D2828;
-            cursor: not-allowed;
-          }
-  
-          &:hover:not(.occupied) {
-            background: rgba(77, 40, 40, 0.1);
-            transform: scale(1.1);
-          }
-  
+
           &.selected {
-            background: #4D2828;
+            background: $calendar-text;
             color: white;
           }
-  
-          &[title]:hover::after {
-            content: attr(title);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4D2828;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 1;
-            margin-bottom: 5px;
+
+          &.disabled {
+            background: rgba($calendar-text, 0.05);
+            color: rgba($calendar-text, 0.4);
+            cursor: default;
+          }
+
+          &.empty {
+            border: none;
+            cursor: default;
           }
         }
       }
     }
   }
-  
-  .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: 98;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  
+
+  /* Выбор времени */
+  .time-select {
+    margin-top: 0.5rem;
+    position: relative;
+    width: 100%;
+
+    .time-select-btn {
+      width: 100%;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid $calendar-text;
+      border-radius: 8px;
+      @include flex-center(row);
+      justify-content: space-between;
+      cursor: pointer;
+      color: $calendar-text;
+      font-size: 1em;
+
+      i {
+        @include transition(transform);
+      }
+    }
+
     &.active {
-      display: block;
-      opacity: 1;
+      .time-select-btn i {
+        transform: rotate(180deg);
+      }
+
+      .time-options {
+        display: block;
+      }
+    }
+
+    .time-options {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid $calendar-text;
+      border-radius: 8px;
+      display: none;
+      overflow: hidden;
+
+      .time-option {
+        padding: 10px;
+        @include flex-center(row);
+        justify-content: space-between;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba($calendar-text, 0.05);
+        }
+
+        &.selected {
+          background: rgba($calendar-text, 0.1);
+        }
+
+        .time {
+          color: $calendar-text;
+          font-weight: bold;
+        }
+      }
     }
   }
-  
-  .booking-modal {
-    display: none;
+
+  /* Сводка бронирования */
+  .booking-summary {
+    grid-column: 1;
+    grid-row: 3;
+    @include card-style(rgba(255, 255, 255, 0.05), 10px, 1.2rem);
+    height: fit-content;
+    width: 280px;
+    margin: -2rem 4rem 0 3rem;
+
+    .selected-info {
+      @include responsive-grid(1, 1.2rem);
+      margin-bottom: 1.2rem;
+      width: 100%;
+
+      h3 {
+        margin-bottom: 0.5rem;
+        color: $accent-color;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: left;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.85rem;
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    .book-button {
+      width: 100%;
+      padding: 0.8rem;
+      background: $accent-color;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      @include transition(opacity);
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  /* Выбор мест */
+  .seat-select {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    @include card-style($seat-bg, 10px, 2rem);
+    text-align: center;
+    height: auto;
+    min-height: 500px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+
+    .stage {
+      background: $seat-border;
+      color: white;
+      text-align: center;
+      padding: 0.8rem 2rem;
+      border-radius: 100px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.1rem;
+      width: 150px;
+    }
+
+    .seating-plan {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0;
+
+      .row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .seat {
+        width: 35px;
+        height: 35px;
+        border: 2px solid $seat-border;
+        background: transparent;
+        border-radius: 5px;
+        cursor: pointer;
+        @include transition;
+        position: relative;
+
+        &.available {
+          background: $seat-bg;
+          border-color: $seat-border;
+        }
+
+        &.occupied {
+          background: $seat-border;
+          border-color: $seat-border;
+          cursor: not-allowed;
+        }
+
+        &:hover:not(.occupied) {
+          background: rgba($seat-border, 0.1);
+          transform: scale(1.1);
+        }
+
+        &[title]:hover::after {
+          content: attr(title);
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: $seat-border;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 4px;
+          font-size: 12px;
+          white-space: nowrap;
+          z-index: 1;
+          margin-bottom: 5px;
+        }
+
+        &.selected {
+          background: $seat-border;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+/* Оверлей */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 98;
+  opacity: 0;
+  @include transition(opacity);
+
+  &.active {
+    display: block;
+    opacity: 1;
+  }
+}
+
+/* Модальное окно бронирования */
+.booking-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+
+  &.active {
+    display: block;
+  }
+
+  .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1000;
-  
-    &.active {
-      display: block;
-    }
-  
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-    }
-  
-    .modal-content {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #282526;
-      padding: 2rem;
-      border-radius: 14px;
-      width: 90%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.4);
-  
-      .close-modal {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #613439;
-        transition: color 0.2s;
-  
-        &:hover {
-          color: var(--text-color);
-        }
-      }
-  
-      .booking-details {
-        margin: 1.5rem 0;
-        padding: 1rem;
-        background: rgba(255,255,255,0.03);
-        border-radius: 10px;
-  
-        .detail-item {
-          margin-bottom: 1rem;
-  
-          &:last-child {
-            margin-bottom: 0;
-          }
-  
-          h3 {
-            color: #a96b68;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-            font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
-          }
-  
-          p {
-            color: var(--text-color);
-            font-size: 1rem;
-          }
-        }
-      }
-  
-      .booking-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-  
-        .form-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-  
-          label {
-            color: #a96b68;
-            font-size: 0.95rem;
-          }
-  
-          input {
-            padding: 0.8rem;
-            border: 1.5px solid #a96b68;
-            border-radius: 7px;
-            font-size: 1rem;
-            background: #232021;
-            color: var(--text-color);
-            transition: border 0.2s;
-  
-            &:focus {
-              border: 1.5px solid var(--text-color);
-              outline: none;
-            }
-          }
-        }
-  
-        .confirm-booking {
-          margin-top: 1rem;
-          padding: 1rem;
-          background: #a96b68;
-          color: var(--text-color);
-          border: none;
-          border-radius: 7px;
-          font-size: 1.1rem;
-          cursor: pointer;
-          transition: background 0.2s, color 0.2s, opacity 0.3s;
-          font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
-  
-          &:hover {
-            background: #a96b68;
-            color: var(--text-color);
-            opacity: 0.95;
-          }
-        }
-      }
-    }
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
   }
-  
-  @media (max-width: 992px) {
-    .tickets-page {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
+
+  .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $modal-bg;
+    padding: 2rem;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: $modal-accent;
+      @include transition(color);
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+
+    .booking-details {
+      margin: 1.5rem 0;
       padding: 1rem;
-      gap: 2rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+
+      .detail-item {
+        margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        h3 {
+          color: lighten($modal-accent, 10%);
+          font-size: 1rem;
+          margin-bottom: 0.3rem;
+          font-family: $font-bold;
+        }
+
+        p {
+          color: $text-color;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .booking-form {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-  
-      .date-select {
-        order: 1;
-        width: 100%;
-        max-width: none;
+      gap: 1rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+          color: lighten($modal-accent, 10%);
+          font-size: 0.95rem;
+        }
+
+        input {
+          padding: 0.8rem;
+          border: 1.5px solid lighten($modal-accent, 10%);
+          border-radius: 7px;
+          font-size: 1rem;
+          background: darken($modal-bg, 5%);
+          color: $text-color;
+          @include transition(border);
+
+          &:focus {
+            border: 1.5px solid $text-color;
+            outline: none;
+          }
+        }
+      }
+
+      .confirm-booking {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: lighten($modal-accent, 10%);
+        color: $text-color;
+        border: none;
+        border-radius: 7px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        @include transition;
+        font-family: $font-bold;
+
+        &:hover {
+          opacity: 0.95;
+        }
+      }
+    }
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+  .tickets-page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 1rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .date-select {
+      order: 1;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      background: none;
+      position: relative;
+      z-index: 99;
+
+      .calendar-toggle {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+
+      .calendar-section {
+        display: block;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%) scale(0.95);
+        width: 90%;
+        max-width: 400px;
+        background: $calendar-bg;
+        border-radius: 20px;
+        padding: 1.5rem;
         margin: 0;
-        padding: 0;
-        background: none;
-        position: relative;
         z-index: 99;
-  
-        .calendar-toggle {
-          display: flex;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        pointer-events: none;
+        @include transition(opacity, 0.3s);
+        @include transition(transform, 0.3s);
+      }
+
+      &.active {
+        .calendar-section {
+          opacity: 1;
+          transform: translateX(-50%) scale(1);
+          pointer-events: auto;
+        }
+
+        ~ .overlay {
+          display: block;
+          opacity: 1;
+        }
+      }
+    }
+
+    .performance-select {
+      order: 2;
+      margin-bottom: 1rem;
+
+      .performance-info {
+        flex-direction: column;
+        max-width: 100%;
+        padding-left: 1.5rem;
+        gap: 1rem;
+
+        img {
+          width: 100%;
+          height: 200px;
           margin-bottom: 1rem;
         }
-  
-        .calendar-section {
-          display: block;
-          position: fixed;
-          top: 20%;
-          left: 50%;
-          transform: translateX(-50%) scale(0.95);
-          width: 90%;
-          max-width: 400px;
-          background: #E8D7D7;
-          border-radius: 20px;
-          padding: 1.5rem;
-          margin: 0;
-          z-index: 99;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.3s, transform 0.3s;
-        }
-  
-        &.active {
-          .calendar-section {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-            pointer-events: auto;
-          }
-  
-          ~ .overlay {
-            display: block;
-            opacity: 1;
+
+        .info {
+          padding-top: 0;
+
+          h2 {
+            font-size: 1.5rem;
           }
         }
       }
-  
-      .performance-select {
-        order: 2;
-        margin-bottom: 1rem;
-  
-        .performance-info {
-          flex-direction: column;
-          max-width: 100%;
-          padding-left: 1.5rem;
-          gap: 1rem;
-          padding: 0.8rem;
-  
-          img {
-            width: 100%;
-            height: 200px;
-            margin-bottom: 1rem;
-          }
-  
-          .info {
-            padding-top: 0;
-  
-            h2 {
-              font-size: 1.5rem;
-            }
-          }
-        }
-      }
-  
-      .seat-select {
-        order: 3;
-        min-height: 350px;
-        padding: 1rem;
-  
-        .seating-plan {
-          max-width: 600px;
+    }
+
+    .seat-select {
+      order: 3;
+
+      .seating-plan {
+        max-width: 600px;
+        gap: 8px;
+
+        .row {
           gap: 8px;
-  
-          .row {
-            gap: 8px;
-          }
-  
-          .seat {
-            width: 30px;
-            height: 30px;
-          }
         }
-  
-        .stage {
-          padding: 0.6rem 1.5rem;
-          margin: 0 auto 2rem;
-          font-size: 1rem;
-          width: 130px;
+
+        .seat {
+          width: 30px;
+          height: 30px;
         }
       }
-  
-      .booking-summary {
-        order: 4;
-        width: 90%;
-        max-width: none;
-        margin: 1.5rem auto;
-        padding: 1.5rem;
-        background: rgba(255, 255, 255, 0.05);
-  
-        .selected-info {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-          text-align: center;
-        }
-  
-        .book-button {
-          width: 100%;
-          margin-top: 1rem;
-          padding: 1rem;
-        }
+
+      .stage {
+        padding: 0.6rem 1.5rem;
+        margin: 0 auto 2rem;
+        font-size: 1rem;
+        width: 130px;
       }
     }
-  }
-  
-  @media (max-width: 768px) {
-    .tickets-page {
-      padding: 0.8rem;
-  
-      .performance-select .performance-info {
-        padding: 0.8rem;
-  
-        img {
-          height: 180px;
-        }
-  
-        .info h2 {
-          font-size: 1.3rem;
-        }
-  
-        .performance-details {
-          font-size: 0.9rem;
-        }
+
+    .booking-summary {
+      order: 4;
+      width: 90%;
+      max-width: none;
+      margin: 1.5rem auto;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+
+      .selected-info {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        text-align: center;
       }
-  
-      .seat-select {
-        min-height: 350px;
+
+      .book-button {
+        width: 100%;
+        margin-top: 1rem;
         padding: 1rem;
-  
-        .seating-plan {
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tickets-page {
+    padding: 0.8rem;
+
+    .selected-info {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+
+      h3 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    .book-button {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+
+    .performance-info {
+      padding: 0.8rem;
+
+      img {
+        height: 180px;
+      }
+
+      .info h2 {
+        font-size: 1.3rem;
+      }
+
+      .performance-details {
+        font-size: 0.9rem;
+      }
+    }
+
+    .seat-select {
+      min-height: 350px;
+      padding: 1rem;
+
+      .seating-plan {
+        gap: 6px;
+
+        .row {
           gap: 6px;
-  
-          .row {
-            gap: 6px;
-          }
-  
-          .seat {
-            width: 25px;
-            height: 25px;
-          }
         }
-  
-        .stage {
-          padding: 0.5rem 1rem;
-          margin: 0 auto 1.5rem;
-          font-size: 0.9rem;
-          width: 120px;
+
+        .seat {
+          width: 25px;
+          height: 25px;
         }
       }
-  
-      .booking-summary {
-        .selected-info {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-  
-          h3 {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-          }
-  
-          p {
-            font-size: 0.9rem;
-          }
-        }
-  
-        .book-button {
-          padding: 1rem;
-          font-size: 1rem;
-        }
+
+      .stage {
+        padding: 0.5rem 1rem;
+        margin: 0 auto 1.5rem;
+        font-size: 0.9rem;
+        width: 120px;
       }
     }
+
+    .performance-select {
+      margin-bottom: 0.75rem;
+    }
   }
-  
-  @media (max-width: 480px) {
-    .tickets-page {
-      padding: 0.5rem;
-  
-      .performance-select .performance-info {
-        padding: 0.6rem;
-  
-        img {
-          height: 160px;
-        }
-  
-        .info h2 {
-          font-size: 1.2rem;
-        }
-  
-        .performance-details {
-          font-size: 0.85rem;
-        }
+}
+
+@media (max-width: 480px) {
+  .tickets-page {
+    padding: 0.5rem;
+
+    .selected-info {
+      gap: 1rem;
+
+      h3 {
+        font-size: 0.9rem;
       }
-  
-      .seat-select {
-        min-height: 300px;
-        padding: 0.8rem;
-  
-        .seating-plan {
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+
+    .book-button {
+      padding: 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    .performance-info {
+      padding: 0.6rem;
+
+      img {
+        height: 160px;
+      }
+
+      .info h2 {
+        font-size: 1.2rem;
+      }
+
+      .performance-details {
+        font-size: 0.85rem;
+      }
+    }
+
+    .seat-select {
+      min-height: 300px;
+      padding: 0.8rem;
+
+      .seating-plan {
+        gap: 4px;
+
+        .row {
           gap: 4px;
-  
-          .row {
-            gap: 4px;
-          }
-  
-          .seat {
-            width: 22px;
-            height: 22px;
-            border-width: 1.5px;
-          }
         }
-  
-        .stage {
-          padding: 0.4rem 0.8rem;
-          margin: 0 auto 1rem;
-          font-size: 0.8rem;
-          width: 100px;
+
+        .seat {
+          width: 22px;
+          height: 22px;
+          border-width: 1.5px;
         }
       }
-  
-      .booking-summary {
-        .selected-info {
-          gap: 1rem;
-  
-          h3 {
-            font-size: 0.9rem;
-          }
-  
-          p {
-            font-size: 0.8rem;
-          }
-        }
-  
-        .book-button {
-          padding: 0.7rem;
-          font-size: 0.9rem;
-        }
+
+      .stage {
+        padding: 0.4rem 0.8rem;
+        margin: 0 auto 1rem;
+        font-size: 0.8rem;
+        width: 100px;
       }
     }
+
+    .performance-select {
+      margin-bottom: 0.5rem;
+    }
   }
+}

@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: "KyivTypeSans-Regular";
   src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");
@@ -19,14 +20,16 @@
   font-style: normal;
   font-display: swap;
 }
+/* Базовые стили */
 body {
   font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "KyivTypeSerif-Bold", "KyivTypeSans-Medium", Arial, sans-serif;
+  font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 
+/* Бургер-меню */
 .burger-menu {
   position: fixed;
   top: 0;
@@ -35,30 +38,36 @@ h1, h2, h3, h4, h5, h6 {
   height: 100vh;
   background-color: var(--primary-color);
   transition: right 0.3s ease;
-  z-index: 1000;
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 .burger-menu.active {
   right: 0;
 }
-.burger-menu .burger-menu-header {
+.burger-menu-header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3rem;
 }
-.burger-menu .search-container {
+
+.search-container {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   border-bottom: 1px solid var(--text-color);
   padding-bottom: 0.5rem;
   width: 80%;
 }
-.burger-menu .search-container input {
+.search-container input {
   background: none;
   border: none;
   color: var(--text-color);
@@ -66,15 +75,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   outline: none;
 }
-.burger-menu .search-container input::-moz-placeholder {
+.search-container input::-moz-placeholder {
   color: var(--text-color);
   opacity: 0.7;
 }
-.burger-menu .search-container input::placeholder {
+.search-container input::placeholder {
   color: var(--text-color);
   opacity: 0.7;
 }
-.burger-menu .close-menu {
+
+.close-menu {
   background: none;
   border: none;
   color: var(--text-color);
@@ -82,23 +92,29 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   padding: 0.5rem;
 }
-.burger-menu .burger-menu-nav {
+
+.burger-menu-nav {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 1.5rem;
 }
-.burger-menu .burger-menu-nav a {
+.burger-menu-nav a {
   color: var(--text-color);
   text-decoration: none;
   font-size: 1.2rem;
   transition: opacity 0.3s ease;
 }
-.burger-menu .burger-menu-nav a:hover {
+.burger-menu-nav a:hover {
   opacity: 0.7;
 }
 
+/* Логотип */
 .logo {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
@@ -108,22 +124,26 @@ h1, h2, h3, h4, h5, h6 {
   height: 50px;
   width: auto;
 }
-.logo .logo-text {
+.logo-text {
   font-size: 1.8rem;
   font-weight: bold;
 }
 
+/* Социальные иконки */
 .social-icons {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  gap: 0.5rem;
 }
 .social-icons a {
   width: 40px;
   height: 40px;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 .social-icons a img {
   width: 100%;
@@ -131,25 +151,32 @@ h1, h2, h3, h4, h5, h6 {
   -o-object-fit: contain;
      object-fit: contain;
   filter: brightness(0) invert(1);
+  transition: opacity 0.3s ease;
 }
 .social-icons a:hover img {
   opacity: 0.8;
 }
 
+/* Шапка */
 header {
   background-color: var(--primary-color);
   padding: 1rem 2rem;
 }
-header nav {
+
+nav {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
 }
-header nav .nav-links {
+nav .nav-links {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
   gap: 2rem;
   list-style: none;
   margin: 0;
@@ -158,18 +185,21 @@ header nav .nav-links {
   left: 50%;
   transform: translateX(-50%);
 }
-header nav .nav-links a {
+nav .nav-links a {
   color: var(--text-color);
   text-decoration: none;
   font-size: 1.2rem;
-  font-family: "KyivTypeSans-Regular", cursive;
+  font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
-header nav .nav-buttons {
+nav .nav-buttons {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: stretch;
   gap: 1rem;
   margin-left: auto;
 }
-header nav .nav-buttons button {
+nav .nav-buttons button {
   background: none;
   border: none;
   color: var(--text-color);
@@ -178,6 +208,7 @@ header nav .nav-buttons button {
   padding: 0.5rem;
 }
 
+/* Адаптивность */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -186,13 +217,12 @@ header nav .nav-buttons button {
     display: none;
   }
   nav {
-    justify-content: space-between;
     padding: 0.5rem 1rem;
   }
-  nav .logo img {
+  .logo img {
     height: 35px;
   }
-  nav .logo-text {
+  .logo-text {
     display: none;
   }
 }

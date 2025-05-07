@@ -1,232 +1,237 @@
-// Font faces
-@font-face {
-    font-family: 'KyivTypeSans-Regular';
-    src: url('fonts/KyivTypeSans-Regular-.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+/* Переменные */
+$primary-color: var(--primary-color);
+$text-color: var(--text-color);
+$shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+$font-regular: 'KyivTypeSans-Regular', Arial, sans-serif;
+$font-medium: 'KyivTypeSans-Medium', Arial, sans-serif;
+$font-bold: 'KyivTypeSerif-Bold', Arial, sans-serif;
+
+/* Миксины */
+@mixin flex-layout($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
 }
 
-@font-face {
-    font-family: 'KyivTypeSans-Medium';
-    src: url('fonts/KyivTypeSans-Medium-.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+@mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $type;
+  @if $top { top: $top; }
+  @if $right { right: $right; }
+  @if $bottom { bottom: $bottom; }
+  @if $left { left: $left; }
 }
 
-@font-face {
-    font-family: 'KyivTypeSerif-Bold';
-    src: url('fonts/KyivTypeSerif-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+@mixin transition($property: all, $duration: 0.3s, $easing: ease) {
+  transition: $property $duration $easing;
 }
 
-// Base typography
+@mixin font-face($name, $path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $name;
+    src: url($path) format('woff2');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+/* Шрифты */
+@include font-face('KyivTypeSans-Regular', 'fonts/KyivTypeSans-Regular-.woff2', 400);
+@include font-face('KyivTypeSans-Medium', 'fonts/KyivTypeSans-Medium-.woff2', 500);
+@include font-face('KyivTypeSerif-Bold', 'fonts/KyivTypeSerif-Bold.woff2', 700);
+
+/* Базовые стили */
 body {
-    font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
+  font-family: $font-regular;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
+  font-family: $font-bold;
 }
 
-// Burger menu styles
+/* Бургер-меню */
 .burger-menu {
-    position: fixed;
-    top: 0;
-    right: -350px;
-    width: 350px;
-    height: 100vh;
-    background-color: var(--primary-color);
-    transition: right 0.3s ease;
-    z-index: 1000;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  @include position(fixed, $top: 0, $right: -350px);
+  width: 350px;
+  height: 100vh;
+  background-color: $primary-color;
+  @include transition(right);
+  padding: 2rem;
+  @include flex-layout(column);
+  box-shadow: $shadow;
+  z-index: 1000;
 
-    &.active {
-        right: 0;
-    }
+  &.active {
+    right: 0;
+  }
 
-    .burger-menu-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 3rem;
-    }
-
-    .search-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        border-bottom: 1px solid var(--text-color);
-        padding-bottom: 0.5rem;
-        width: 80%;
-
-        input {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.1rem;
-            width: 100%;
-            outline: none;
-
-            &::placeholder {
-                color: var(--text-color);
-                opacity: 0.7;
-            }
-        }
-    }
-
-    .close-menu {
-        background: none;
-        border: none;
-        color: var(--text-color);
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0.5rem;
-    }
-
-    .burger-menu-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-
-        a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: opacity 0.3s ease;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-    }
+  &-header {
+    @include flex-layout($justify: space-between, $align: center);
+    margin-bottom: 3rem;
+  }
 }
 
-// Logo styles
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.search-container {
+  @include flex-layout($align: center);
+  gap: 1rem;
+  border-bottom: 1px solid $text-color;
+  padding-bottom: 0.5rem;
+  width: 80%;
+
+  input {
+    background: none;
+    border: none;
+    color: $text-color;
+    font-size: 1.1rem;
+    width: 100%;
+    outline: none;
+
+    &::placeholder {
+      color: $text-color;
+      opacity: 0.7;
+    }
+  }
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  color: $text-color;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.burger-menu-nav {
+  @include flex-layout(column);
+  gap: 1.5rem;
+
+  a {
+    color: $text-color;
     text-decoration: none;
-    color: var(--text-color);
+    font-size: 1.2rem;
+    @include transition(opacity);
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+/* Логотип */
+.logo {
+  @include flex-layout($align: center);
+  gap: 0.5rem;
+  text-decoration: none;
+  color: $text-color;
+
+  img {
+    height: 50px;
+    width: auto;
+  }
+
+  &-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+}
+
+/* Социальные иконки */
+.social-icons {
+  @include flex-layout($align: center);
+  gap: 0.5rem;
+
+  a {
+    width: 40px;
+    height: 40px;
+    @include flex-layout($justify: center, $align: center);
 
     img {
-        height: 50px;
-        width: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      @include transition(opacity);
     }
 
-    .logo-text {
-        font-size: 1.8rem;
-        font-weight: bold;
+    &:hover img {
+      opacity: 0.8;
     }
+  }
 }
 
-// Social media icons
-.social-icons {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+/* Шапка */
+header {
+  background-color: $primary-color;
+  padding: 1rem 2rem;
+}
+
+nav {
+  @include flex-layout($justify: space-between, $align: center);
+  max-width: 1400px;
+  margin: 0 auto;
+  @include position(relative);
+
+  .nav-links {
+    @include flex-layout($justify: center);
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @include position(absolute, $left: 50%);
+    transform: translateX(-50%);
 
     a {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-        }
-
-        &:hover img {
-            opacity: 0.8;
-        }
+      color: $text-color;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-family: $font-regular;
     }
+  }
+
+  .nav-buttons {
+    @include flex-layout($justify: flex-end);
+    gap: 1rem;
+    margin-left: auto;
+
+    button {
+      background: none;
+      border: none;
+      color: $text-color;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+  }
 }
 
-// Header styles
-header {
-    background-color: var(--primary-color);
-    padding: 1rem 2rem;
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1400px;
-        margin: 0 auto;
-        position: relative;
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-
-            a {
-                color: var(--text-color);
-                text-decoration: none;
-                font-size: 1.2rem;
-                font-family: 'KyivTypeSans-Regular', cursive;
-            }
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-left: auto;
-
-            button {
-                background: none;
-                border: none;
-                color: var(--text-color);
-                font-size: 1.2rem;
-                cursor: pointer;
-                padding: 0.5rem;
-            }
-        }
-    }
-}
-
+/* Адаптивность */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
+  .nav-links {
+    display: none;
+  }
 
-    .nav-buttons .search-btn {
-        display: none;
-    }
+  .nav-buttons .search-btn {
+    display: none;
+  }
 
-    nav {
-        justify-content: space-between;
-        padding: 0.5rem 1rem;
+  nav {
+    padding: 0.5rem 1rem;
+  }
 
-        .logo img {
-            height: 35px;
-        }
+  .logo img {
+    height: 35px;
+  }
 
-        .logo-text {
-            display: none;
-        }
-    }
+  .logo-text {
+    display: none;
+  }
 }
 
 @media (max-width: 400px) {
-    .burger-menu {
-        width: 280px;
-        right: -280px;
-    }
+  .burger-menu {
+    width: 280px;
+    right: -280px;
+  }
 }

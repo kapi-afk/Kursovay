@@ -1,32 +1,38 @@
+@charset "UTF-8";
+/* Переменные */
+/* Миксины */
+/* Шрифты */
 @font-face {
   font-family: "KyivTypeSans-Regular";
-  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
+  src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSans-Medium";
-  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
+  src: url(".../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSerif-Bold";
-  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
+  src: url(".../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
+/* Базовые стили */
 body {
   font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "KyivTypeSerif-Bold", "KyivTypeSans-Medium", Arial, sans-serif;
+  font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 
+/* Страница билетов */
 .tickets-page {
   max-width: 1200px;
   margin: 0;
@@ -35,19 +41,25 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 280px 900px;
   grid-template-rows: auto auto auto;
   gap: 1rem 6rem;
+  /* Выбор представления */
+  /* Календарь */
+  /* Выбор времени */
+  /* Сводка бронирования */
+  /* Выбор мест */
 }
 .tickets-page .performance-select {
   grid-column: 2;
   grid-row: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   width: 100%;
   height: auto;
   position: relative;
 }
-.tickets-page .performance-select .performance-info {
+.tickets-page .performance-info {
   background: rgba(255, 255, 255, 0.05);
-  padding: 0.8rem 3rem;
   border-radius: 8px;
+  padding: 0.8rem;
+  padding-left: 3rem;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -55,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
   max-width: 900px;
 }
-.tickets-page .performance-select .performance-info img {
+.tickets-page .performance-info img {
   width: 300px;
   height: 150px;
   border-radius: 5px;
@@ -64,29 +76,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
   flex-shrink: 0;
 }
-.tickets-page .performance-select .performance-info .info {
+.tickets-page .performance-info .info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex-grow: 1;
   padding-top: 0.5rem;
 }
-.tickets-page .performance-select .performance-info .info h2 {
+.tickets-page .performance-info .info h2 {
   font-size: 1.8rem;
   margin-bottom: 0.8rem;
   color: var(--accent-color);
   text-align: left;
 }
-.tickets-page .performance-select .performance-info .info .performance-details {
+.tickets-page .performance-info .performance-details {
   margin-top: 0.5rem;
   width: 100%;
   text-align: left;
 }
-.tickets-page .performance-select .performance-info .info .performance-details .cast {
+.tickets-page .performance-info .cast {
   font-size: 1.1rem;
   margin-bottom: 0.4rem;
 }
-.tickets-page .performance-select .performance-info .info .performance-details .duration {
+.tickets-page .performance-info .duration {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.95rem;
 }
@@ -96,12 +108,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   max-width: 280px;
   max-height: 330px;
-  padding: 8px 0.5rem;
+  padding: 8px;
+  padding-left: 0.5rem;
   background-color: #E8D7D7;
   border-radius: 20px;
   margin: 0 4rem 0 3rem;
   color: #4D2828;
   transition: max-height 0.3s ease;
+}
+.tickets-page .date-select:has(.dates-grid .date-cell:nth-child(43)) {
+  max-height: 375px;
 }
 .tickets-page .date-select h2 {
   font-size: 1em;
@@ -123,7 +139,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.3s ease;
 }
 .tickets-page .date-select .calendar-toggle:hover {
-  background-color: #d8c7c7;
+  background-color: #dfc7c7;
 }
 .tickets-page .date-select .calendar-toggle i {
   transition: transform 0.3s ease;
@@ -133,8 +149,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .tickets-page .date-select .calendar-section .calendar-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 0.7rem;
   color: #4D2828;
 }
@@ -176,6 +194,7 @@ h1, h2, h3, h4, h5, h6 {
 .tickets-page .date-select .calendar-section .dates-grid .date-cell {
   aspect-ratio: 1;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   background: transparent;
@@ -202,34 +221,36 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   cursor: default;
 }
-.tickets-page .date-select .time-select {
+.tickets-page .time-select {
   margin-top: 0.5rem;
   position: relative;
   width: 100%;
 }
-.tickets-page .date-select .time-select.active .time-select-btn i {
-  transform: rotate(180deg);
-}
-.tickets-page .date-select .time-select.active .time-options {
-  display: block;
-}
-.tickets-page .date-select .time-select .time-select-btn {
+.tickets-page .time-select .time-select-btn {
   width: 100%;
   padding: 10px;
   background: #fff;
   border: 1px solid #4D2828;
   border-radius: 8px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  justify-content: space-between;
   cursor: pointer;
   color: #4D2828;
   font-size: 1em;
 }
-.tickets-page .date-select .time-select .time-select-btn i {
+.tickets-page .time-select .time-select-btn i {
   transition: transform 0.3s ease;
 }
-.tickets-page .date-select .time-select .time-options {
+.tickets-page .time-select.active .time-select-btn i {
+  transform: rotate(180deg);
+}
+.tickets-page .time-select.active .time-options {
+  display: block;
+}
+.tickets-page .time-select .time-options {
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
@@ -240,29 +261,31 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   overflow: hidden;
 }
-.tickets-page .date-select .time-select .time-options .time-option {
+.tickets-page .time-select .time-options .time-option {
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  justify-content: space-between;
   cursor: pointer;
 }
-.tickets-page .date-select .time-select .time-options .time-option:hover {
+.tickets-page .time-select .time-options .time-option:hover {
   background: rgba(77, 40, 40, 0.05);
 }
-.tickets-page .date-select .time-select .time-options .time-option .time {
+.tickets-page .time-select .time-options .time-option.selected {
+  background: rgba(77, 40, 40, 0.1);
+}
+.tickets-page .time-select .time-options .time-option .time {
   color: #4D2828;
   font-weight: bold;
-}
-.tickets-page .date-select .time-select .time-options .time-option.selected {
-  background: rgba(77, 40, 40, 0.1);
 }
 .tickets-page .booking-summary {
   grid-column: 1;
   grid-row: 3;
   background: rgba(255, 255, 255, 0.05);
-  padding: 1.2rem;
   border-radius: 10px;
+  padding: 1.2rem;
   height: -moz-fit-content;
   height: fit-content;
   width: 280px;
@@ -270,7 +293,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .tickets-page .booking-summary .selected-info {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(1, 1fr);
   gap: 1.2rem;
   margin-bottom: 1.2rem;
   width: 100%;
@@ -310,8 +333,8 @@ h1, h2, h3, h4, h5, h6 {
   grid-column: 2;
   grid-row: 2/span 2;
   background: #E8D7D7;
-  padding: 2rem;
   border-radius: 10px;
+  padding: 2rem;
   text-align: center;
   height: auto;
   min-height: 500px;
@@ -351,7 +374,7 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   position: relative;
 }
 .tickets-page .seat-select .seating-plan .seat.available {
@@ -366,10 +389,6 @@ h1, h2, h3, h4, h5, h6 {
 .tickets-page .seat-select .seating-plan .seat:hover:not(.occupied) {
   background: rgba(77, 40, 40, 0.1);
   transform: scale(1.1);
-}
-.tickets-page .seat-select .seating-plan .seat.selected {
-  background: #4D2828;
-  color: white;
 }
 .tickets-page .seat-select .seating-plan .seat[title]:hover::after {
   content: attr(title);
@@ -386,7 +405,12 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
   margin-bottom: 5px;
 }
+.tickets-page .seat-select .seating-plan .seat.selected {
+  background: #4D2828;
+  color: white;
+}
 
+/* Оверлей */
 .overlay {
   display: none;
   position: fixed;
@@ -406,6 +430,7 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
+/* Модальное окно бронирования */
 .booking-modal {
   display: none;
   position: fixed;
@@ -451,7 +476,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.5rem;
   cursor: pointer;
   color: #613439;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
 }
 .booking-modal .modal-content .close-modal:hover {
   color: var(--text-color);
@@ -469,10 +494,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 .booking-modal .modal-content .booking-details .detail-item h3 {
-  color: #a96b68;
+  color: #82464d;
   font-size: 1rem;
   margin-bottom: 0.3rem;
-  font-family: "KyivTypeSerif-Bold", "KyivTypeSans-Medium", Arial, sans-serif;
+  font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 .booking-modal .modal-content .booking-details .detail-item p {
   color: var(--text-color);
@@ -489,17 +514,17 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
 }
 .booking-modal .modal-content .booking-form .form-group label {
-  color: #a96b68;
+  color: #82464d;
   font-size: 0.95rem;
 }
 .booking-modal .modal-content .booking-form .form-group input {
   padding: 0.8rem;
-  border: 1.5px solid #a96b68;
+  border: 1.5px solid #82464d;
   border-radius: 7px;
   font-size: 1rem;
-  background: #232021;
+  background: #1b1919;
   color: var(--text-color);
-  transition: border 0.2s;
+  transition: border 0.3s ease;
 }
 .booking-modal .modal-content .booking-form .form-group input:focus {
   border: 1.5px solid var(--text-color);
@@ -508,21 +533,20 @@ h1, h2, h3, h4, h5, h6 {
 .booking-modal .modal-content .booking-form .confirm-booking {
   margin-top: 1rem;
   padding: 1rem;
-  background: #a96b68;
+  background: #82464d;
   color: var(--text-color);
   border: none;
   border-radius: 7px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, opacity 0.3s;
-  font-family: "KyivTypeSerif-Bold", "KyivTypeSans-Medium", Arial, sans-serif;
+  transition: all 0.3s ease;
+  font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 .booking-modal .modal-content .booking-form .confirm-booking:hover {
-  background: #a96b68;
-  color: var(--text-color);
   opacity: 0.95;
 }
 
+/* Адаптивность */
 @media (max-width: 992px) {
   .tickets-page {
     grid-template-columns: 1fr;
@@ -563,7 +587,8 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s ease;
+    transition: transform 0.3s ease;
   }
   .tickets-page .date-select.active .calendar-section {
     opacity: 1;
@@ -583,7 +608,6 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100%;
     padding-left: 1.5rem;
     gap: 1rem;
-    padding: 0.8rem;
   }
   .tickets-page .performance-select .performance-info img {
     width: 100%;
@@ -598,8 +622,6 @@ h1, h2, h3, h4, h5, h6 {
   }
   .tickets-page .seat-select {
     order: 3;
-    min-height: 350px;
-    padding: 1rem;
   }
   .tickets-page .seat-select .seating-plan {
     max-width: 600px;
@@ -641,16 +663,31 @@ h1, h2, h3, h4, h5, h6 {
   .tickets-page {
     padding: 0.8rem;
   }
-  .tickets-page .performance-select .performance-info {
+  .tickets-page .selected-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .tickets-page .selected-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .tickets-page .selected-info p {
+    font-size: 0.9rem;
+  }
+  .tickets-page .book-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .tickets-page .performance-info {
     padding: 0.8rem;
   }
-  .tickets-page .performance-select .performance-info img {
+  .tickets-page .performance-info img {
     height: 180px;
   }
-  .tickets-page .performance-select .performance-info .info h2 {
+  .tickets-page .performance-info .info h2 {
     font-size: 1.3rem;
   }
-  .tickets-page .performance-select .performance-info .performance-details {
+  .tickets-page .performance-info .performance-details {
     font-size: 0.9rem;
   }
   .tickets-page .seat-select {
@@ -673,36 +710,37 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
     width: 120px;
   }
-  .tickets-page .booking-summary .selected-info {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .tickets-page .booking-summary .selected-info h3 {
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-  }
-  .tickets-page .booking-summary .selected-info p {
-    font-size: 0.9rem;
-  }
-  .tickets-page .booking-summary .book-button {
-    padding: 1rem;
-    font-size: 1rem;
+  .tickets-page .performance-select {
+    margin-bottom: 0.75rem;
   }
 }
 @media (max-width: 480px) {
   .tickets-page {
     padding: 0.5rem;
   }
-  .tickets-page .performance-select .performance-info {
+  .tickets-page .selected-info {
+    gap: 1rem;
+  }
+  .tickets-page .selected-info h3 {
+    font-size: 0.9rem;
+  }
+  .tickets-page .selected-info p {
+    font-size: 0.8rem;
+  }
+  .tickets-page .book-button {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  .tickets-page .performance-info {
     padding: 0.6rem;
   }
-  .tickets-page .performance-select .performance-info img {
+  .tickets-page .performance-info img {
     height: 160px;
   }
-  .tickets-page .performance-select .performance-info .info h2 {
+  .tickets-page .performance-info .info h2 {
     font-size: 1.2rem;
   }
-  .tickets-page .performance-select .performance-info .performance-details {
+  .tickets-page .performance-info .performance-details {
     font-size: 0.85rem;
   }
   .tickets-page .seat-select {
@@ -726,17 +764,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
     width: 100px;
   }
-  .tickets-page .booking-summary .selected-info {
-    gap: 1rem;
-  }
-  .tickets-page .booking-summary .selected-info h3 {
-    font-size: 0.9rem;
-  }
-  .tickets-page .booking-summary .selected-info p {
-    font-size: 0.8rem;
-  }
-  .tickets-page .booking-summary .book-button {
-    padding: 0.7rem;
-    font-size: 0.9rem;
+  .tickets-page .performance-select {
+    margin-bottom: 0.5rem;
   }
 }/*# sourceMappingURL=tickets_styles.css.map */

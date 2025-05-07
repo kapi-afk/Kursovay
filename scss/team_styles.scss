@@ -1,183 +1,205 @@
-// Font faces
+
 @font-face {
-    font-family: 'KyivTypeSans-Regular';
-    src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'KyivTypeSans-Regular';
+  src: url('fonts/KyivTypeSans-Regular-.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KyivTypeSans-Medium';
+  src: url('fonts/KyivTypeSans-Medium-.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KyivTypeSerif-Bold';
+  src: url('fonts/KyivTypeSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$text-color: var(--text-color);
+$shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 10px;
+
+@mixin flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@mixin card-transition {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+@mixin responsive-grid($columns) {
+  grid-template-columns: repeat($columns, 1fr);
+}
+
+body {
+  font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
+}
+
+.team {
+  padding: 2rem;
+  background-color: $secondary-color;
+
+  h2 {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
-  
-  @font-face {
-    font-family: 'KyivTypeSans-Medium';
-    src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+}
+
+.team-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-group {
+  margin-bottom: 4rem;
+
+  h3 {
+    color: $text-color;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: normal;
   }
-  
-  @font-face {
-    font-family: 'KyivTypeSerif-Bold';
-    src: url('../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+}
+
+.team-grid {
+  display: grid;
+  @include responsive-grid(3);
+  gap: 2rem;
+  justify-items: center;
+}
+
+.team-member {
+  width: 350px;
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+
+  &-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    @include card-transition;
+    box-shadow: $shadow;
+
+    .team-member:hover & {
+      transform: rotateY(180deg);
+    }
   }
-  
-  body {
-    font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
+
+  &-front,
+  &-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    @include backface-hidden;
+    border-radius: $border-radius;
+    overflow: hidden;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
+
+  &-front {
+    background-color: #fff;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-  
-  // Team styles
-  .team {
+
+  &-back {
+    background-color: $primary-color;
+    transform: rotateY(180deg);
+    @include flex-center;
     padding: 2rem;
-    background-color: var(--secondary-color);
-  
-    .team-section {
-      max-width: 1200px;
-      margin: 0 auto;
+
+    h4 {
+      color: $text-color;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
     }
-  
-    h2 {
-      color: #fff;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-  
-    .team-group {
-      margin-bottom: 4rem;
-  
-      h3 {
-        color: var(--text-color);
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-        font-weight: normal;
-      }
-    }
-  
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      justify-items: center;
-    }
-  
-    .team-member {
-      width: 350px;
-      height: 400px;
-      perspective: 1000px;
-      cursor: pointer;
-  
-      .team-member-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
-        .team-member-front,
-        .team-member-back {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-          border-radius: 10px;
-          overflow: hidden;
-        }
-  
-        .team-member-front {
-          background-color: #fff;
-  
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-        }
-  
-        .team-member-back {
-          background-color: var(--primary-color);
-          transform: rotateY(180deg);
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          padding: 2rem;
-  
-          h4 {
-            color: var(--text-color);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-          }
-  
-          p {
-            color: var(--text-color);
-            font-size: 1.2rem;
-            line-height: 1.6;
-            opacity: 0.8;
-          }
-        }
-      }
-  
-      &:hover .team-member-inner {
-        transform: rotateY(180deg);
-      }
-    }
-  
-    // Responsive adjustments
-    @media (max-width: 1200px) {
-      .team-member {
-        width: 300px;
-        height: 350px;
-      }
-    }
-  
-    @media (max-width: 992px) {
-      .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .team-member {
-        width: 280px;
-        height: 320px;
-      }
-    }
-  
-    @media (max-width: 768px) {
-      padding: 1rem;
-  
-      h2 {
-        font-size: 2rem;
-      }
-  
-      .team-group h3 {
-        font-size: 1.5rem;
-      }
-  
-      .team-member {
-        width: 250px;
-        height: 300px;
-      }
-    }
-  
-    @media (max-width: 576px) {
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-  
-      .team-member {
-        width: 280px;
-        height: 320px;
-      }
+
+    p {
+      color: $text-color;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      opacity: 0.8;
     }
   }
+}
+
+@media (max-width: 1200px) {
+  .team-member {
+    width: 300px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 992px) {
+  .team-grid {
+    @include responsive-grid(2);
+  }
+  
+  .team-member {
+    width: 280px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team {
+    padding: 1rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .team-group h3 {
+    font-size: 1.5rem;
+  }
+
+  .team-member {
+    width: 250px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .team-grid {
+    @include responsive-grid(1);
+  }
+
+  .team-member {
+    width: 280px;
+    height: 320px;
+  }
+}
