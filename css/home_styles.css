@@ -88,6 +88,43 @@ nav .nav-buttons button:hover {
   color: #b56965;
 }
 
+.thumbnail {
+  width: 200px;
+  cursor: pointer;
+}
+.thumbnail + .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+.thumbnail + .modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+}
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
 .hero, .premieres, .afisha {
   padding: 2rem;
   max-width: 1200px;

@@ -1,4 +1,7 @@
-
+@charset "UTF-8";
+/* Переменные */
+/* Миксины */
+/* Шрифты */
 @font-face {
   font-family: "KyivTypeSans-Regular";
   src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");

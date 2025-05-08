@@ -88,8 +88,11 @@
         <section class="afisha">
             <h2>Репертуар</h2>
             <div class="rep-wrapper">
-                <img src="images/Репертуар.png" alt="Репертуар" class="rep-img">
+                <img src="images/Репертуар.png" alt="Репертуар" class="rep-img" class="thumbnail" onclick="openModal()">
                 <a href="images/Репертуар.png" download class="download-rep-btn">Скачать репертуар</a>
+                <div class="modal" id="imageModal" onclick="closeModal()">
+                    <img src="images/Репертуар.png" alt="Репертуар">
+                </div>
             </div>
         </section>
     </main>
@@ -116,5 +119,6 @@
 
     <script src="menu.js"></script>
     <script src="slider.js"></script>
+    <script src="home.js"></script>
 </body>
 </html> 

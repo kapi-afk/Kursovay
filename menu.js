@@ -22,3 +22,10 @@ document.addEventListener('keydown', (e) => {
         document.body.style.overflow = '';
     }
 });
+function openModal() {
+    document.getElementById('imageModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+}
