@@ -1,28 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Расписание выступлений
-    const performanceSchedules = {
-        'Крестики-нолики': { days: ['Пн', 'Ср'], time: '14:00' },
-        'Оливер!': { days: ['Вт', 'Чт'], time: '20:00' },
-        'Ричард 2': { days: ['Пт'], time: '20:00' },
-        'Дьявол носит Prada': { days: ['Сб'], time: '14:00' },
-        '101 далматинец': { days: ['Сб'], time: '20:00' },
-        'Геркулес': { days: ['Вс'], time: '14:00' },
-        'Пятый шаг': { days: ['Пн', 'Чт'], time: '20:00' },
-        'Мой сосед Тоторо': { days: ['Вт', 'Пт'], time: '14:00' },
-        'Дракула': { days: ['Ср', 'Вс'], time: '20:00' }
-    };
+document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация анимации
+    initAnimation();
+    
+    // Инициализация кнопок
+    initButtons();
+});
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Animation on scroll
+function initAnimation() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -40,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
+    // Добавляем стили для анимации
     const style = document.createElement('style');
     style.textContent = `
         .fade-in {
@@ -58,22 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
+}
 
-    document.querySelectorAll('.buy-ticket').forEach(button => {
-        button.addEventListener('click', function(e) {
+function initButtons() {
+    const buyButtons = document.querySelectorAll('.buy-ticket');
+    
+    buyButtons.forEach(button => {
+        button.onclick = function(e) {
             e.preventDefault();
-            const performanceCard = this.closest('.performance-card');
-            const performanceName = performanceCard.querySelector('h3').textContent;
-            const performanceImage = performanceCard.querySelector('img').src;
+            const performanceId = this.dataset.performanceId;
             
-            localStorage.setItem('selectedPerformance', JSON.stringify({
-                name: performanceName,
-                image: performanceImage,
-                price: 30, 
-                schedule: performanceSchedules[performanceName]
-            }));
-            
-            window.location.href = 'tickets.html';
-        });
+            // Ищем спектакль в данных
+            const performance = performancesData.performances.find(p => p.id === performanceId);
+            if (performance) {
+                // Сохраняем ВЕСЬ объект спектакля
+                localStorage.setItem('selectedPerformance', JSON.stringify(performance));
+                // Переходим на страницу билетов
+                window.location.replace('tickets.html');
+            }
+        };
     });
-}); 
+} 

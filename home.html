@@ -41,21 +41,21 @@
                         <img src="images\The_Fifth_Step_Initial_Agents_1200x600.jpg" alt="The Fifth Step" class="featured-image">
                         <div class="show-info">
                             <h2>The Fifth Step</h2>
-                            <a href="performances.html" class="more-link">Подробнее</a>
+                            <a href="performances.html" class="more-link" data-performance-id="comedy-1">Подробнее</a>
                         </div>
                     </div>
                     <div class="slide">
                         <img src="images/MNT-MAR25-BBs-SOLT-1200x600-1.jpg" alt="Slide 2" class="featured-image">
                         <div class="show-info">
                             <h2>My Neighbor Totoro</h2>
-                            <a href="performances.html" class="more-link">Подробнее</a>
+                            <a href="" class="more-link" data-performance-id="comedy-2">Подробнее</a>
                         </div>
                     </div>
                     <div class="slide">
                         <img src="images\Richard-II-Website_3000_1500_5-500x250_k5hgjh.jpg" alt="Slide 3" class="featured-image">
                         <div class="show-info">
                             <h2>Richard II</h2>
-                            <a href="performances.html" class="more-link">Подробнее</a>
+                            <a href="performances.html" class="more-link" data-performance-id="drama-3">Подробнее</a>
                         </div>
                     </div>
                 </div>
@@ -72,14 +72,14 @@
                     <img src="images/MNT-MAR25-BBs-SOLT-1200x600-1.jpg" alt="My neighbor Totoro">
                     <div class="premiere-info">
                         <h3>My Neighbor Totoro</h3>
-                        <a href="performances.html" class="more-link">Подробнее</a>
+                        <a href="performances.html" class="more-link"  data-performance-id="comedy-1" >Подробнее</a>
                     </div>
                 </div>
                 <div class="premiere-card">
                     <img src="images\Richard-II-Website_3000_1500_5-500x250_k5hgjh.jpg" alt="Richard II">
                     <div class="premiere-info">
                         <h3>Richard II</h3>
-                        <a href="performances.html" class="more-link">Подробнее</a>
+                        <a href="performances.html" class="more-link" data-performance-id="drama-3">Подробнее</a>
                     </div>
                 </div>
             </div>
@@ -119,6 +119,19 @@
 
     <script src="menu.js"></script>
     <script src="slider.js"></script>
-    <script src="home.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.more-link[data-performance-id]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const id = this.getAttribute('data-performance-id');
+                if (id) {
+                    localStorage.setItem('selectedPerformanceId', id);
+                    window.location.href = 'tickets.html';
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html> 

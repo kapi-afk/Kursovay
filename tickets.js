@@ -1,13 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const selectedPerformance = JSON.parse(localStorage.getItem('selectedPerformance'));
-    if (selectedPerformance) {
-        const performanceInfo = document.querySelector('.performance-info');
-        if (performanceInfo) {
-            const img = performanceInfo.querySelector('img');
-            const title = performanceInfo.querySelector('h2');
-            if (img) img.src = selectedPerformance.image;
-            if (title) title.textContent = selectedPerformance.name;
-        }
+    const selectedPerformanceId = localStorage.getItem('selectedPerformanceId');
+    if (!selectedPerformanceId) {
+        window.location.replace('performances.html');
+        return;
+    }
+
+    const selectedPerformance = performancesData.performances.find(p => p.id === selectedPerformanceId);
+    if (!selectedPerformance) {
+        window.location.replace('performances.html');
+        return;
+    }
+
+    const performanceInfo = document.querySelector('.performance-info');
+    if (performanceInfo) {
+        const img = performanceInfo.querySelector('img');
+        const title = performanceInfo.querySelector('h2');
+        if (img) img.src = selectedPerformance.image;
+        if (title) title.textContent = selectedPerformance.name;
     }
 
     const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -40,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getPerformanceTime() {
-        return selectedPerformance ? selectedPerformance.schedule.time : null;
+        if (!selectedPerformance || !selectedPerformance.schedule) return null;
+        return selectedPerformance.schedule.time;
     }
 
     function initCalendar() {
@@ -110,16 +120,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTimeOptions() {
-        if (selectedPerformance && selectedPerformance.schedule) {
-            const timeOptions = document.querySelectorAll('.time-option');
-            timeOptions.forEach(option => {
-                const time = option.dataset.time;
-                if (time === selectedPerformance.schedule.time) {
-                    option.style.display = 'flex';
-                } else {
-                    option.style.display = 'none';
-                }
+        if (!selectedPerformance || !selectedPerformance.schedule) return;
+        const timeSelectBtn = document.querySelector('.time-select-btn');
+        const timeOptionsContainer = document.querySelector('.time-options');
+        timeOptionsContainer.innerHTML = '';
+
+        let times = selectedPerformance.schedule.time;
+        if (!Array.isArray(times)) times = [times];
+
+        times.forEach(time => {
+            const option = document.createElement('div');
+            option.className = 'time-option';
+            option.dataset.time = time;
+            option.textContent = time;
+            if (selectedTime === time) option.classList.add('selected');
+            option.addEventListener('click', () => {
+                selectedTime = time;
+                timeSelectBtn.textContent = time;
+                updateSelectedDateDisplay();
+                updateOccupiedSeats();
+                document.querySelector('.time-select').classList.remove('active');
             });
+            timeOptionsContainer.appendChild(option);
+        });
+
+        if (selectedTime) {
+            timeSelectBtn.textContent = selectedTime;
+        } else {
+            timeSelectBtn.textContent = 'Выберите время';
         }
     }
 
@@ -200,32 +228,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const timeSelect = document.querySelector('.time-select');
         const timeSelectBtn = document.querySelector('.time-select-btn');
-        const timeOptions = document.querySelectorAll('.time-option');
 
         if (timeSelectBtn) {
             timeSelectBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 timeSelect.classList.toggle('active');
-            });
-        }
-
-        if (timeOptions) {
-            timeOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const time = option.dataset.time;
-                    selectedTime = time;
-                    
-                    const btnText = time === '14:00' ? 'Дневной сеанс (14:00)' : 'Вечерний сеанс (20:00)';
-                    timeSelectBtn.textContent = btnText;
-                    
-                    timeOptions.forEach(opt => opt.classList.remove('selected'));
-                    option.classList.add('selected');
-                    
-                    updateSelectedDateDisplay();
-                    updateOccupiedSeats();
-                    
-                    timeSelect.classList.remove('active');
-                });
             });
         }
 
@@ -281,14 +288,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTotalPrice() {
-        if (totalPriceDisplay) {
-            const selectedPerformance = JSON.parse(localStorage.getItem('selectedPerformance'));
-            if (selectedPerformance) {
-                const totalPrice = selectedSeats.length * selectedPerformance.price;
-                totalPriceDisplay.textContent = `${totalPrice} BYN.`;
-            } else {
-                totalPriceDisplay.textContent = '0 BYN.';
-            }
+        if (totalPriceDisplay && selectedPerformance) {
+            const totalPrice = selectedSeats.length * selectedPerformance.price;
+            totalPriceDisplay.textContent = `${totalPrice} BYN.`;
+        } else {
+            totalPriceDisplay.textContent = '0 BYN.';
         }
     }
 
@@ -325,7 +329,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         let totalPrice = '0 BYN.';
-        const selectedPerformance = JSON.parse(localStorage.getItem('selectedPerformance'));
         if (selectedPerformance) {
             totalPrice = `${selectedSeats.length * selectedPerformance.price} BYN.`;
         }
@@ -433,7 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 seat.classList.add('occupied');
                 seat.classList.remove('selected');
                 seat.style.cursor = 'not-allowed';
-                seat.style.backgroundColor = '##4D2828'; 
+                seat.style.backgroundColor = '#4D2828'; 
                 seat.style.color = 'white'; 
                 seat.style.pointerEvents = 'none'; 
             } else {
@@ -452,4 +455,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location.reload();
         }
     });
-}); 
+});
+    
+    
