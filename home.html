@@ -20,7 +20,6 @@
         </nav>
     </header>
 
-    <!-- Burger Menu -->
     <div class="burger-menu">
         <div class="burger-menu-header">
             <button class="close-menu"><i class="fas fa-times"></i></button>
@@ -72,7 +71,7 @@
                     <img src="images/MNT-MAR25-BBs-SOLT-1200x600-1.jpg" alt="My neighbor Totoro">
                     <div class="premiere-info">
                         <h3>My Neighbor Totoro</h3>
-                        <a href="performances.html" class="more-link"  data-performance-id="comedy-1" >Подробнее</a>
+                        <a href="performances.html" class="more-link"  data-performance-id="comedy-2" >Подробнее</a>
                     </div>
                 </div>
                 <div class="premiere-card">
@@ -119,19 +118,6 @@
 
     <script src="menu.js"></script>
     <script src="slider.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.more-link[data-performance-id]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('data-performance-id');
-                if (id) {
-                    localStorage.setItem('selectedPerformanceId', id);
-                    window.location.href = 'tickets.html';
-                }
-            });
-        });
-    });
-    </script>
+    <script src="home.js"></script>
 </body>
 </html> 

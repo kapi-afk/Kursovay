@@ -1,3 +1,24 @@
+@font-face {
+  font-family: "KyivTypeSans-Regular";
+  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "KyivTypeSans-Medium";
+  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "KyivTypeSerif-Bold";
+  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 .performances {
   padding: 2rem;
   max-width: 1600px;
@@ -8,11 +29,11 @@
 }
 .performances .genre-section h2 {
   font-size: 2rem;
-  color: var(--text-color);
+  color: #E8D1C9;
   margin-bottom: 1.5rem;
   text-align: left;
   padding-left: 1rem;
-  border-left: 4px solid var(--accent-color);
+  border-left: 4px solid #b56965;
 }
 .performances .performance-grid {
   display: grid;
@@ -52,8 +73,8 @@
   text-align: left;
 }
 .performances .performance-grid .performance-card .performance-info .buy-ticket {
-  background-color: var(--primary-color);
-  color: var(--text-color);
+  background-color: #613439;
+  color: #E8D1C9;
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 5px;

@@ -1,20 +1,20 @@
 @font-face {
   font-family: "KyivTypeSans-Regular";
-  src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSans-Medium";
-  src: url("fonts/KyivTypeSans-Medium-.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSerif-Bold";
-  src: url("fonts/KyivTypeSerif-Bold.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -56,7 +56,7 @@ main .history .content-box {
 }
 main .about-us p,
 main .history p {
-  color: var(--text-color);
+  color: #E8D1C9;
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 1.2rem;
@@ -71,7 +71,7 @@ main .unique-features ul {
   margin: 0;
 }
 main .unique-features li {
-  color: var(--text-color);
+  color: #E8D1C9;
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;

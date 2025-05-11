@@ -1,18 +1,4 @@
-/* Переменные */
-$font-regular: 'KyivTypeSans-Regular', Arial, sans-serif;
-$font-medium: 'KyivTypeSans-Medium', Arial, sans-serif;
-$font-bold: 'KyivTypeSerif-Bold', Arial, sans-serif;
-$accent-color: var(--accent-color);
-$primary-color: var(--primary-color);
-$text-color: var(--text-color);
-$calendar-bg: #E8D7D7;
-$calendar-text: #4D2828;
-$seat-bg: #E8D7D7;
-$seat-border: #4D2828;
-$modal-bg: #282526;
-$modal-accent: #613439;
-
-/* Миксины */
+@import 'variables_fonts';
 @mixin flex-center($direction: row) {
   display: flex;
   flex-direction: $direction;
@@ -36,32 +22,6 @@ $modal-accent: #613439;
   gap: $gap;
 }
 
-/* Шрифты */
-@font-face {
-  font-family: 'KyivTypeSans-Regular';
-  src: url('fonts/KyivTypeSans-Regular-.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'KyivTypeSans-Medium';
-  src: url('.../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'KyivTypeSerif-Bold';
-  src: url('.../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Базовые стили */
 body {
   font-family: $font-regular;
 }
@@ -70,7 +30,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-bold;
 }
 
-/* Страница билетов */
 .tickets-page {
   max-width: 1200px;
   margin: 0;
@@ -80,7 +39,6 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-rows: auto auto auto;
   gap: 1rem 6rem;
 
-  /* Выбор представления */
   .performance-select {
     grid-column: 2;
     grid-row: 1;
@@ -141,7 +99,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  /* Календарь */
   .date-select {
     grid-column: 1;
     grid-row: 1 / span 2;
@@ -269,7 +226,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  /* Выбор времени */
   .time-select {
     margin-top: 0.5rem;
     position: relative;
@@ -335,7 +291,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  /* Сводка бронирования */
   .booking-summary {
     grid-column: 1;
     grid-row: 3;
@@ -387,11 +342,10 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  /* Выбор мест */
   .seat-select {
     grid-column: 2;
     grid-row: 2 / span 2;
-    @include card-style($seat-bg, 10px, 2rem);
+    @include card-style($calendar-bg, 10px, 2rem);
     text-align: center;
     height: auto;
     min-height: 500px;
@@ -400,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
 
     .stage {
-      background: $seat-border;
+      background: $calendar-text;
       color: white;
       text-align: center;
       padding: 0.8rem 2rem;
@@ -429,7 +383,7 @@ h1, h2, h3, h4, h5, h6 {
       .seat {
         width: 35px;
         height: 35px;
-        border: 2px solid $seat-border;
+        border: 2px solid $calendar-text;
         background: transparent;
         border-radius: 5px;
         cursor: pointer;
@@ -437,18 +391,18 @@ h1, h2, h3, h4, h5, h6 {
         position: relative;
 
         &.available {
-          background: $seat-bg;
-          border-color: $seat-border;
+          background: $calendar-bg;
+          border-color: $calendar-text;
         }
 
         &.occupied {
-          background: $seat-border;
-          border-color: $seat-border;
+          background: $calendar-text;
+          border-color: $calendar-text;
           cursor: not-allowed;
         }
 
         &:hover:not(.occupied) {
-          background: rgba($seat-border, 0.1);
+          background: rgba($calendar-text, 0.1);
           transform: scale(1.1);
         }
 
@@ -458,7 +412,7 @@ h1, h2, h3, h4, h5, h6 {
           bottom: 100%;
           left: 50%;
           transform: translateX(-50%);
-          background: $seat-border;
+          background: $calendar-text;
           color: white;
           padding: 5px 10px;
           border-radius: 4px;
@@ -469,7 +423,7 @@ h1, h2, h3, h4, h5, h6 {
         }
 
         &.selected {
-          background: $seat-border;
+          background: $calendar-text;
           color: white;
         }
       }
@@ -477,7 +431,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Оверлей */
 .overlay {
   display: none;
   position: fixed;
@@ -498,7 +451,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Модальное окно бронирования */
 .booking-modal {
   display: none;
   position: fixed;
@@ -544,7 +496,7 @@ h1, h2, h3, h4, h5, h6 {
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      color: $modal-accent;
+      color: $primary-color;
       @include transition(color);
 
       &:hover {
@@ -566,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
         }
 
         h3 {
-          color: lighten($modal-accent, 10%);
+          color: lighten($primary-color, 10%);
           font-size: 1rem;
           margin-bottom: 0.3rem;
           font-family: $font-bold;
@@ -590,13 +542,13 @@ h1, h2, h3, h4, h5, h6 {
         gap: 0.5rem;
 
         label {
-          color: lighten($modal-accent, 10%);
+          color: lighten($primary-color, 10%);
           font-size: 0.95rem;
         }
 
         input {
           padding: 0.8rem;
-          border: 1.5px solid lighten($modal-accent, 10%);
+          border: 1.5px solid lighten($primary-color, 10%);
           border-radius: 7px;
           font-size: 1rem;
           background: darken($modal-bg, 5%);
@@ -613,7 +565,7 @@ h1, h2, h3, h4, h5, h6 {
       .confirm-booking {
         margin-top: 1rem;
         padding: 1rem;
-        background: lighten($modal-accent, 10%);
+        background: lighten($primary-color, 10%);
         color: $text-color;
         border: none;
         border-radius: 7px;
@@ -630,7 +582,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Адаптивность */
 @media (max-width: 992px) {
   .tickets-page {
     grid-template-columns: 1fr;

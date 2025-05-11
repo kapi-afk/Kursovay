@@ -1,29 +1,6 @@
-// Font faces
-@font-face {
-    font-family: 'KyivTypeSans-Regular';
-    src: url('fonts/KyivTypeSans-Regular-.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'KyivTypeSans-Medium';
-    src: url('fonts/KyivTypeSans-Medium-.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'KyivTypeSerif-Bold';
-    src: url('fonts/KyivTypeSerif-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  // Base typography
+@import 'variables_fonts';
+
+
   body {
     font-family: 'KyivTypeSans-Regular', Arial, sans-serif;
   }
@@ -32,7 +9,6 @@
     font-family: 'KyivTypeSerif-Bold', 'KyivTypeSans-Medium', Arial, sans-serif;
   }
   
-  // Main content styles
   main {
       max-width: 1200px;
       margin: 0 auto;
@@ -60,7 +36,7 @@
       
       .about-us p,
       .history p {
-          color: var(--text-color);
+          color: $text-color;
           font-size: 1.2rem;
           line-height: 1.6;
           margin-bottom: 1.2rem;
@@ -78,7 +54,7 @@
           }
           
           li {
-              color: var(--text-color);
+              color: $text-color;
               font-size: 1.2rem;
               line-height: 1.6;
               margin-bottom: 1.5rem;
@@ -97,7 +73,6 @@
       }
   }
   
-  // Responsive adjustments
   @media (max-width: 768px) {
       main {
           padding: 1.5rem;

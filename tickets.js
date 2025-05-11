@@ -1,11 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+import { loadPerformancesData } from './performances_data.js';
+
+document.addEventListener('DOMContentLoaded', async function() {
     const selectedPerformanceId = localStorage.getItem('selectedPerformanceId');
     if (!selectedPerformanceId) {
         window.location.replace('performances.html');
         return;
     }
 
-    const selectedPerformance = performancesData.performances.find(p => p.id === selectedPerformanceId);
+    const performances = await loadPerformancesData();
+    const selectedPerformance = performances.find(p => p.id === selectedPerformanceId);
     if (!selectedPerformance) {
         window.location.replace('performances.html');
         return;

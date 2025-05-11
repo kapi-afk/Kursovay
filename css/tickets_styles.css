@@ -1,29 +1,24 @@
-@charset "UTF-8";
-/* Переменные */
-/* Миксины */
-/* Шрифты */
 @font-face {
   font-family: "KyivTypeSans-Regular";
-  src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSans-Medium";
-  src: url(".../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSerif-Bold";
-  src: url(".../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-/* Базовые стили */
 body {
   font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
@@ -32,7 +27,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 
-/* Страница билетов */
 .tickets-page {
   max-width: 1200px;
   margin: 0;
@@ -41,11 +35,6 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 280px 900px;
   grid-template-rows: auto auto auto;
   gap: 1rem 6rem;
-  /* Выбор представления */
-  /* Календарь */
-  /* Выбор времени */
-  /* Сводка бронирования */
-  /* Выбор мест */
 }
 .tickets-page .performance-select {
   grid-column: 2;
@@ -86,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 .tickets-page .performance-info .info h2 {
   font-size: 1.8rem;
   margin-bottom: 0.8rem;
-  color: var(--accent-color);
+  color: #b56965;
   text-align: left;
 }
 .tickets-page .performance-info .performance-details {
@@ -300,7 +289,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .tickets-page .booking-summary .selected-info h3 {
   margin-bottom: 0.5rem;
-  color: var(--accent-color);
+  color: #b56965;
   font-size: 0.9rem;
   width: 100%;
   text-align: left;
@@ -314,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
 .tickets-page .booking-summary .book-button {
   width: 100%;
   padding: 0.8rem;
-  background: var(--accent-color);
+  background: #b56965;
   border: none;
   border-radius: 5px;
   color: white;
@@ -410,7 +399,6 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-/* Оверлей */
 .overlay {
   display: none;
   position: fixed;
@@ -430,7 +418,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
-/* Модальное окно бронирования */
 .booking-modal {
   display: none;
   position: fixed;
@@ -479,7 +466,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: color 0.3s ease;
 }
 .booking-modal .modal-content .close-modal:hover {
-  color: var(--text-color);
+  color: #E8D1C9;
 }
 .booking-modal .modal-content .booking-details {
   margin: 1.5rem 0;
@@ -500,7 +487,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 .booking-modal .modal-content .booking-details .detail-item p {
-  color: var(--text-color);
+  color: #E8D1C9;
   font-size: 1rem;
 }
 .booking-modal .modal-content .booking-form {
@@ -523,18 +510,18 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 7px;
   font-size: 1rem;
   background: #1b1919;
-  color: var(--text-color);
+  color: #E8D1C9;
   transition: border 0.3s ease;
 }
 .booking-modal .modal-content .booking-form .form-group input:focus {
-  border: 1.5px solid var(--text-color);
+  border: 1.5px solid #E8D1C9;
   outline: none;
 }
 .booking-modal .modal-content .booking-form .confirm-booking {
   margin-top: 1rem;
   padding: 1rem;
   background: #82464d;
-  color: var(--text-color);
+  color: #E8D1C9;
   border: none;
   border-radius: 7px;
   font-size: 1.1rem;
@@ -546,7 +533,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.95;
 }
 
-/* Адаптивность */
 @media (max-width: 992px) {
   .tickets-page {
     grid-template-columns: 1fr;

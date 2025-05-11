@@ -1,27 +1,3 @@
-:root {
-  --primary-color: #613439;
-  --secondary-color: #1F1E20;
-  --text-color: #E8D1C9;
-  --accent-color: #b56965;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "KyivTypeSans-Regular", Arial, sans-serif;
-  background-color: #1F1E20;
-  color: #E8D1C9;
-  line-height: 1.6;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
-}
-
 @font-face {
   font-family: "KyivTypeSans-Regular";
   src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
@@ -43,6 +19,23 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-display: swap;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "KyivTypeSans-Regular", Arial, sans-serif;
+  background-color: #1F1E20;
+  color: #E8D1C9;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
+}
+
 header {
   background-color: #613439;
   padding: 1rem 2rem;

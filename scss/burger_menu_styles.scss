@@ -1,12 +1,5 @@
-/* Переменные */
-$primary-color: var(--primary-color);
-$text-color: var(--text-color);
-$shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-$font-regular: 'KyivTypeSans-Regular', Arial, sans-serif;
-$font-medium: 'KyivTypeSans-Medium', Arial, sans-serif;
-$font-bold: 'KyivTypeSerif-Bold', Arial, sans-serif;
+@import 'variables_fonts';
 
-/* Миксины */
 @mixin flex-layout($direction: row, $justify: flex-start, $align: stretch) {
   display: flex;
   flex-direction: $direction;
@@ -36,12 +29,6 @@ $font-bold: 'KyivTypeSerif-Bold', Arial, sans-serif;
   }
 }
 
-/* Шрифты */
-@include font-face('KyivTypeSans-Regular', 'fonts/KyivTypeSans-Regular-.woff2', 400);
-@include font-face('KyivTypeSans-Medium', 'fonts/KyivTypeSans-Medium-.woff2', 500);
-@include font-face('KyivTypeSerif-Bold', 'fonts/KyivTypeSerif-Bold.woff2', 700);
-
-/* Базовые стили */
 body {
   font-family: $font-regular;
 }
@@ -50,7 +37,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-bold;
 }
 
-/* Бургер-меню */
 .burger-menu {
   @include position(fixed, $top: 0, $right: -350px);
   width: 350px;
@@ -119,7 +105,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Логотип */
 .logo {
   @include flex-layout($align: center);
   gap: 0.5rem;
@@ -137,7 +122,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Социальные иконки */
 .social-icons {
   @include flex-layout($align: center);
   gap: 0.5rem;
@@ -161,7 +145,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Шапка */
 header {
   background-color: $primary-color;
   padding: 1rem 2rem;
@@ -206,7 +189,6 @@ nav {
   }
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .nav-links {
     display: none;

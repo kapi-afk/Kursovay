@@ -1,29 +1,24 @@
-@charset "UTF-8";
-/* Переменные */
-/* Миксины */
-/* Шрифты */
 @font-face {
   font-family: "KyivTypeSans-Regular";
-  src: url("fonts/KyivTypeSans-Regular-.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSans-Regular-.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSans-Medium";
-  src: url("fonts/KyivTypeSans-Medium-.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSans-Medium-.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "KyivTypeSerif-Bold";
-  src: url("fonts/KyivTypeSerif-Bold.woff2") format("woff2");
+  src: url("../fonts/KyivTypeSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-/* Базовые стили */
 body {
   font-family: "KyivTypeSans-Regular", Arial, sans-serif;
 }
@@ -32,21 +27,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "KyivTypeSerif-Bold", Arial, sans-serif;
 }
 
-/* Бургер-меню */
 .burger-menu {
   position: fixed;
   top: 0;
   right: -350px;
   width: 350px;
   height: 100vh;
-  background-color: var(--primary-color);
+  background-color: #613439;
   transition: right 0.3s ease;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 .burger-menu.active {
@@ -66,31 +60,31 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid var(--text-color);
+  border-bottom: 1px solid #E8D1C9;
   padding-bottom: 0.5rem;
   width: 80%;
 }
 .search-container input {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: #E8D1C9;
   font-size: 1.1rem;
   width: 100%;
   outline: none;
 }
 .search-container input::-moz-placeholder {
-  color: var(--text-color);
+  color: #E8D1C9;
   opacity: 0.7;
 }
 .search-container input::placeholder {
-  color: var(--text-color);
+  color: #E8D1C9;
   opacity: 0.7;
 }
 
 .close-menu {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: #E8D1C9;
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -104,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 1.5rem;
 }
 .burger-menu-nav a {
-  color: var(--text-color);
+  color: #E8D1C9;
   text-decoration: none;
   font-size: 1.2rem;
   transition: opacity 0.3s ease;
@@ -113,7 +107,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.7;
 }
 
-/* Логотип */
 .logo {
   display: flex;
   flex-direction: row;
@@ -121,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  color: var(--text-color);
+  color: #E8D1C9;
 }
 .logo img {
   height: 50px;
@@ -132,7 +125,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* Социальные иконки */
 .social-icons {
   display: flex;
   flex-direction: row;
@@ -160,9 +152,8 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
 }
 
-/* Шапка */
 header {
-  background-color: var(--primary-color);
+  background-color: #613439;
   padding: 1rem 2rem;
 }
 
@@ -189,7 +180,7 @@ nav .nav-links {
   transform: translateX(-50%);
 }
 nav .nav-links a {
-  color: var(--text-color);
+  color: #E8D1C9;
   text-decoration: none;
   font-size: 1.2rem;
   font-family: "KyivTypeSans-Regular", Arial, sans-serif;
@@ -205,13 +196,12 @@ nav .nav-buttons {
 nav .nav-buttons button {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: #E8D1C9;
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0.5rem;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .nav-links {
     display: none;

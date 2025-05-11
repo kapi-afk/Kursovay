@@ -1,0 +1,37 @@
+// Переменные цветов и шрифтов
+$primary-color: #613439;
+$secondary-color: #1F1E20;
+$text-color: #E8D1C9;
+$accent-color: #b56965;
+$calendar-bg: #E8D7D7;
+$calendar-text: #4D2828;
+$modal-bg: #282526;
+$shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 10px;
+
+$font-regular: 'KyivTypeSans-Regular', Arial, sans-serif;
+$font-medium: 'KyivTypeSans-Medium', Arial, sans-serif;
+$font-bold: 'KyivTypeSerif-Bold', Arial, sans-serif;
+
+// Объявления шрифтов
+@font-face {
+  font-family: 'KyivTypeSans-Regular';
+  src: url('../fonts/KyivTypeSans-Regular-.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KyivTypeSans-Medium';
+  src: url('../fonts/KyivTypeSans-Medium-.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KyivTypeSerif-Bold';
+  src: url('../fonts/KyivTypeSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} 
