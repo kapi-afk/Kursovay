@@ -1,10 +1,8 @@
 import { loadPerformancesData } from './performances_data.js';
 
 document.addEventListener('DOMContentLoaded', async function() {
-    // Загрузка данных о спектаклях
     const performances = await loadPerformancesData();
     
-    // Группировка спектаклей по жанрам
     const performancesByGenre = performances.reduce((acc, performance) => {
         if (!acc[performance.genre]) {
             acc[performance.genre] = [];
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         return acc;
     }, {});
 
-    // Создание секций для каждого жанра
     const performancesSection = document.querySelector('.performances');
     if (performancesSection) {
         performancesSection.innerHTML = '';
@@ -39,10 +36,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     }
 
-    // Инициализация анимации
     initAnimation();
-    
-    // Инициализация кнопок
     initButtons();
 });
 
@@ -92,7 +86,6 @@ function initAnimation() {
         observer.observe(card);
     });
 
-    // Добавляем стили для анимации
     const style = document.createElement('style');
     style.textContent = `
         .fade-in {
@@ -119,7 +112,6 @@ function initButtons() {
         button.onclick = function(e) {
             e.preventDefault();
             const performanceId = this.dataset.performanceId;
-            // Сохраняем только id спектакля
             localStorage.setItem('selectedPerformanceId', performanceId);
             window.location.replace('tickets.html');
         };

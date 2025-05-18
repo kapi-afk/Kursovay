@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const performanceId = selectedPerformance.id;
         const dateKey = `${performanceId}_${date.toISOString().split('T')[0]}_${time}`;
         const currentBookedSeats = bookedSeats[dateKey] || [];
-        // Добавляем только новые места, которых еще нет
+        // новые места, которых еще нет
         const newSeats = seats.filter(newSeat =>
             !currentBookedSeats.some(s => s.row === newSeat.row && s.seat === newSeat.seat)
         );
